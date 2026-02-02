@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Source files (dist is compiled)
+packages/*/src/
+packages/*/tests/
+packages/*/tsconfig.json
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test coverage
+coverage/
+
+# User config (credentials)
+packages/mcp-knowledge/data/config.json
+
+# Git
+.git/
+.gitignore
+
+# Local MCP config
+.mcp.json

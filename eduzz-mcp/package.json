@@ -1,6 +1,6 @@
 {
   "name": "eduzz-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Eduzz MCP Suite - Knowledge base, API client, and configuration management",
   "workspaces": [
     "packages/*"
@@ -10,8 +10,15 @@
     "test": "npm run test --workspaces",
     "lint": "npm run lint --workspaces",
     "clean": "npm run clean --workspaces",
-    "sync": "npm run sync -w @eduzz/mcp-knowledge"
+    "sync": "npm run sync -w @eduzz/mcp-knowledge",
+    "prepublishOnly": "npm run build"
   },
+  "files": [
+    "packages/*/dist/**",
+    "packages/*/package.json",
+    "packages/*/README.md",
+    "packages/mcp-knowledge/data/**"
+  ],
   "keywords": [
     "eduzz",
     "mcp",
