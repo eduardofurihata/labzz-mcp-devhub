@@ -1,5 +1,12 @@
 import TurndownService from 'turndown';
 
+interface DOMNode {
+  nodeName: string;
+  querySelector: (selector: string) => DOMNode | null;
+  className?: string;
+  textContent?: string | null;
+}
+
 export class HtmlProcessor {
   private turndown: TurndownService;
 
@@ -19,7 +26,7 @@ export class HtmlProcessor {
         );
       },
       replacement: (content, node) => {
-        const codeElement = (node as HTMLElement).querySelector('code');
+        const codeElement = (node as DOMNode).querySelector('code');
         const className = codeElement?.className || '';
         const langMatch = className.match(/language-(\w+)/);
         const lang = langMatch ? langMatch[1] : '';
@@ -37,7 +44,7 @@ export class HtmlProcessor {
     // Clean up sidebars
     this.turndown.addRule('removeSidebar', {
       filter: (node) => {
-        const className = (node as HTMLElement).className || '';
+        const className = (node as DOMNode).className || '';
         return (
           className.includes('sidebar') ||
           className.includes('nav') ||

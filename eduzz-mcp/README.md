@@ -25,10 +25,12 @@ This creates a profile with your Eduzz API credentials in `~/.eduzz-mcp/config.j
 ### 3. Sync Knowledge Base
 
 ```bash
-OPENAI_API_KEY=sk-... npx eduzz-knowledge sync
+npx eduzz-knowledge sync
 ```
 
 This crawls the Eduzz documentation and creates a searchable knowledge base.
+
+**No API key required!** Embeddings are generated locally using Transformers.js.
 
 ### 4. Add to Claude Desktop
 
@@ -43,10 +45,7 @@ Add to your `claude_desktop_config.json`:
     },
     "eduzz-knowledge": {
       "command": "npx",
-      "args": ["eduzz-knowledge", "serve"],
-      "env": {
-        "OPENAI_API_KEY": "sk-..."
-      }
+      "args": ["eduzz-knowledge", "serve"]
     },
     "eduzz-api": {
       "command": "npx",
@@ -55,6 +54,8 @@ Add to your `claude_desktop_config.json`:
   }
 }
 ```
+
+**Note:** No environment variables needed! Everything runs locally.
 
 ## Packages
 
@@ -99,10 +100,12 @@ eduzz-knowledge sync --force # Force full re-sync
 eduzz-knowledge serve        # Start MCP server
 ```
 
-**Environment Variables:**
-- `OPENAI_API_KEY` (required) - For embeddings
-- `ANTHROPIC_API_KEY` (optional) - For image descriptions with Claude
-- `EDUZZ_SYNC_SCHEDULE` (optional) - Cron schedule for auto-sync
+**Environment Variables (all optional):**
+- `OPENAI_API_KEY` - For AI-powered image descriptions
+- `ANTHROPIC_API_KEY` - For AI-powered image descriptions with Claude
+- `EDUZZ_SYNC_SCHEDULE` - Cron schedule for auto-sync
+
+**Note:** No API key is required! Embeddings are generated locally.
 
 ### @eduzz/mcp-api
 

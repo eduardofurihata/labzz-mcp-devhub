@@ -12,11 +12,10 @@ export {
   type OpenAPIDocument,
 } from './processors/index.js';
 export {
-  EmbeddingsManager,
-  type EmbeddingsConfig,
+  LocalEmbeddings,
+  type LocalEmbeddingsConfig,
   type SearchResult,
-} from './embeddings/index.js';
-export { LocalEmbeddingsManager, type LocalEmbeddingsConfig } from './embeddings/local-client.js';
+} from './embeddings/local-embeddings.js';
 export {
   type CrawledPage,
   type CrawledImage,

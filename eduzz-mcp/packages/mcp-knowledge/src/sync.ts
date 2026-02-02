@@ -1,17 +1,16 @@
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-import { existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync } from 'node:fs';
 import { Crawler } from './scraper/crawler.js';
-import { HtmlProcessor, CodeProcessor, ImageProcessor, OpenAPIProcessor } from './processors/index.js';
-import { LocalEmbeddingsManager } from './embeddings/local-client.js';
+import { CodeProcessor, ImageProcessor, OpenAPIProcessor } from './processors/index.js';
+import { LocalEmbeddings } from './embeddings/local-embeddings.js';
 import { ChunkMetadata, CrawledPage, DocumentChunk } from './types.js';
 import { createHash } from 'node:crypto';
 
 export interface SyncOptions {
   force?: boolean;
-  openaiApiKey: string;
-  anthropicApiKey?: string;
-  useClaudeForImages?: boolean;
+  openaiApiKey?: string;  // Optional - for AI image descriptions
+  anthropicApiKey?: string;  // Optional - for AI image descriptions
   onProgress?: (message: string) => void;
 }
 
@@ -26,20 +25,18 @@ export interface SyncResult {
 export class KnowledgeSyncer {
   private baseDir: string;
   private codeProcessor: CodeProcessor;
-  private htmlProcessor: HtmlProcessor;
 
   constructor() {
     this.baseDir = join(homedir(), '.eduzz-mcp');
     this.codeProcessor = new CodeProcessor();
-    this.htmlProcessor = new HtmlProcessor();
 
     if (!existsSync(this.baseDir)) {
       mkdirSync(this.baseDir, { recursive: true });
     }
   }
 
-  async sync(options: SyncOptions): Promise<SyncResult> {
-    const { force = false, openaiApiKey, anthropicApiKey, useClaudeForImages = false, onProgress } = options;
+  async sync(options: SyncOptions = {}): Promise<SyncResult> {
+    const { force = false, openaiApiKey, anthropicApiKey, onProgress } = options;
 
     const result: SyncResult = {
       pagesProcessed: 0,
@@ -64,19 +61,21 @@ export class KnowledgeSyncer {
       result.pagesProcessed = pages.length;
       log(`Crawled ${pages.length} pages`);
 
-      // Step 2: Process images with AI vision
+      // Step 2: Process images
       log('Processing images...');
-      const imageProcessor = new ImageProcessor(openaiApiKey);
+      const imageProcessor = new ImageProcessor();
       const allImages = pages.flatMap((p) => p.images);
 
       if (allImages.length > 0) {
-        if (useClaudeForImages && anthropicApiKey) {
-          await imageProcessor.processImagesWithClaude(allImages, anthropicApiKey);
+        // Use AI descriptions if API keys provided, otherwise use alt text
+        if (openaiApiKey || anthropicApiKey) {
+          await imageProcessor.processImagesWithAI(allImages, { openaiApiKey, anthropicApiKey });
+          log(`Processed ${allImages.length} images with AI descriptions`);
         } else {
           await imageProcessor.processImages(allImages);
+          log(`Processed ${allImages.length} images (using alt text)`);
         }
         result.imagesProcessed = allImages.length;
-        log(`Processed ${allImages.length} images`);
       }
 
       // Step 3: Check for OpenAPI specs
@@ -88,10 +87,9 @@ export class KnowledgeSyncer {
         await openApiProcessor.processSpec(url);
       }
 
-      // Step 4: Index everything in embeddings
-      log('Indexing content for semantic search...');
-      const embeddings = new LocalEmbeddingsManager({
-        openaiApiKey,
+      // Step 4: Index everything with local embeddings (no API key needed!)
+      log('Indexing content for semantic search (using local embeddings)...');
+      const embeddings = new LocalEmbeddings({
         storagePath: this.baseDir,
       });
 
@@ -99,6 +97,9 @@ export class KnowledgeSyncer {
         log('Force sync: clearing existing index...');
         embeddings.clear();
       }
+
+      // Initialize embeddings (downloads model on first run)
+      await embeddings.initialize();
 
       // Index page content
       const chunks = this.createChunks(pages);

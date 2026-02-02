@@ -5,22 +5,21 @@ import { KnowledgeSyncer } from './sync.js';
 const args = process.argv.slice(2);
 const command = args[0];
 
-function getEnvVar(name: string, required: boolean = false): string {
-  const value = process.env[name];
-  if (required && !value) {
-    console.error(`Error: ${name} environment variable is required`);
-    process.exit(1);
-  }
-  return value || '';
-}
-
 async function sync(force: boolean = false): Promise<void> {
-  const openaiApiKey = getEnvVar('OPENAI_API_KEY', true);
-  const anthropicApiKey = getEnvVar('ANTHROPIC_API_KEY');
+  // API keys are optional - only used for AI image descriptions
+  const openaiApiKey = process.env.OPENAI_API_KEY;
+  const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
 
   const syncer = new KnowledgeSyncer();
 
-  console.log('Starting knowledge base sync...\n');
+  console.log('Starting knowledge base sync...');
+  console.log('Using local embeddings (no API key required)\n');
+
+  if (openaiApiKey || anthropicApiKey) {
+    console.log('AI image descriptions: enabled\n');
+  } else {
+    console.log('AI image descriptions: disabled (using alt text)\n');
+  }
 
   const result = await syncer.sync({
     force,
@@ -44,9 +43,10 @@ async function sync(force: boolean = false): Promise<void> {
 }
 
 async function serve(): Promise<void> {
-  const openaiApiKey = getEnvVar('OPENAI_API_KEY', true);
-  const anthropicApiKey = getEnvVar('ANTHROPIC_API_KEY');
-  const cronSchedule = getEnvVar('EDUZZ_SYNC_SCHEDULE') || undefined;
+  // API keys are optional
+  const openaiApiKey = process.env.OPENAI_API_KEY;
+  const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+  const cronSchedule = process.env.EDUZZ_SYNC_SCHEDULE || undefined;
 
   await startServer({
     openaiApiKey,
@@ -67,15 +67,18 @@ Commands:
   serve             Start the MCP server
   help              Show this help message
 
-Environment Variables:
-  OPENAI_API_KEY         Required for embeddings and image descriptions
-  ANTHROPIC_API_KEY      Optional, for using Claude for image descriptions
-  EDUZZ_SYNC_SCHEDULE    Optional cron schedule for auto-sync (default: 0 3 * * 0)
+Environment Variables (all optional):
+  OPENAI_API_KEY         For AI-powered image descriptions (optional)
+  ANTHROPIC_API_KEY      For AI-powered image descriptions (optional)
+  EDUZZ_SYNC_SCHEDULE    Cron schedule for auto-sync (default: 0 3 * * 0)
+
+Note: No API key is required for basic functionality!
+      Embeddings are generated locally using Transformers.js.
 
 Examples:
-  OPENAI_API_KEY=sk-... eduzz-knowledge sync
-  OPENAI_API_KEY=sk-... eduzz-knowledge sync --force
-  OPENAI_API_KEY=sk-... eduzz-knowledge serve
+  eduzz-knowledge sync
+  eduzz-knowledge sync --force
+  eduzz-knowledge serve
 `);
 }
 

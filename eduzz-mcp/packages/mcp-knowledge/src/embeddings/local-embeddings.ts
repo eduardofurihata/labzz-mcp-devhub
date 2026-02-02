@@ -1,9 +1,11 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import OpenAI from 'openai';
 import { createHash } from 'node:crypto';
 import { DocumentChunk, ChunkMetadata } from '../types.js';
-import { SearchResult } from './index.js';
+
+// Dynamic import for transformers.js
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let embedder: any = null;
 
 interface StoredDocument {
   id: string;
@@ -18,28 +20,33 @@ interface LocalDatabase {
   lastUpdated: string;
 }
 
+export interface SearchResult {
+  id: string;
+  content: string;
+  metadata: ChunkMetadata;
+  distance: number;
+}
+
 export interface LocalEmbeddingsConfig {
-  openaiApiKey: string;
   storagePath: string;
-  embeddingModel?: string;
+  modelName?: string;
 }
 
 /**
- * Local embeddings manager that stores vectors in a JSON file.
- * This is a lightweight alternative to ChromaDB for simpler deployments.
+ * Local embeddings manager using Transformers.js
+ * No API key required - runs 100% locally
  */
-export class LocalEmbeddingsManager {
-  private openai: OpenAI;
+export class LocalEmbeddings {
   private storagePath: string;
   private dbPath: string;
-  private embeddingModel: string;
+  private modelName: string;
   private db: LocalDatabase;
+  private initialized: boolean = false;
 
   constructor(config: LocalEmbeddingsConfig) {
-    this.openai = new OpenAI({ apiKey: config.openaiApiKey });
     this.storagePath = config.storagePath;
     this.dbPath = join(config.storagePath, 'knowledge.db.json');
-    this.embeddingModel = config.embeddingModel || 'text-embedding-3-small';
+    this.modelName = config.modelName || 'Xenova/all-MiniLM-L6-v2';
 
     if (!existsSync(this.storagePath)) {
       mkdirSync(this.storagePath, { recursive: true });
@@ -73,39 +80,52 @@ export class LocalEmbeddingsManager {
     writeFileSync(this.dbPath, JSON.stringify(this.db, null, 2), 'utf-8');
   }
 
+  async initialize(): Promise<void> {
+    if (this.initialized) return;
+
+    console.log('Loading local embedding model (first run may take a moment to download)...');
+
+    // Dynamic import to avoid issues with ESM
+    const { pipeline } = await import('@xenova/transformers');
+
+    embedder = await pipeline('feature-extraction', this.modelName, {
+      quantized: true, // Use quantized model for faster inference
+    });
+
+    this.initialized = true;
+    console.log('Embedding model loaded successfully!');
+  }
+
+  private async generateEmbedding(text: string): Promise<number[]> {
+    if (!embedder) {
+      throw new Error('Embedder not initialized. Call initialize() first.');
+    }
+
+    const result = await embedder(text, { pooling: 'mean', normalize: true });
+    return Array.from(result.data as Float32Array);
+  }
+
+  private async generateEmbeddings(texts: string[]): Promise<number[][]> {
+    const embeddings: number[][] = [];
+
+    for (let i = 0; i < texts.length; i++) {
+      const embedding = await this.generateEmbedding(texts[i]);
+      embeddings.push(embedding);
+
+      // Progress indicator for large batches
+      if (texts.length > 10 && (i + 1) % 10 === 0) {
+        console.log(`Embedding progress: ${i + 1}/${texts.length}`);
+      }
+    }
+
+    return embeddings;
+  }
+
   private generateChunkId(content: string, metadata: ChunkMetadata): string {
     const hash = createHash('md5')
       .update(content + JSON.stringify(metadata))
       .digest('hex');
     return hash.substring(0, 16);
-  }
-
-  async generateEmbedding(text: string): Promise<number[]> {
-    const response = await this.openai.embeddings.create({
-      model: this.embeddingModel,
-      input: text,
-    });
-    return response.data[0].embedding;
-  }
-
-  async generateEmbeddings(texts: string[]): Promise<number[][]> {
-    const batchSize = 100;
-    const embeddings: number[][] = [];
-
-    for (let i = 0; i < texts.length; i += batchSize) {
-      const batch = texts.slice(i, i + batchSize);
-      const response = await this.openai.embeddings.create({
-        model: this.embeddingModel,
-        input: batch,
-      });
-      embeddings.push(...response.data.map((d) => d.embedding));
-
-      if (i + batchSize < texts.length) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
-      }
-    }
-
-    return embeddings;
   }
 
   private cosineSimilarity(a: number[], b: number[]): number {
@@ -149,6 +169,8 @@ export class LocalEmbeddingsManager {
   }
 
   async addDocument(content: string, metadata: ChunkMetadata): Promise<string[]> {
+    await this.initialize();
+
     const chunks = this.chunkText(content);
     const ids: string[] = [];
 
@@ -183,12 +205,15 @@ export class LocalEmbeddingsManager {
   }
 
   async addChunks(chunks: DocumentChunk[]): Promise<void> {
+    await this.initialize();
+
     const newChunks = chunks.filter(
       (c) => !this.db.documents.some((d) => d.id === c.id)
     );
 
     if (newChunks.length === 0) return;
 
+    console.log(`Generating embeddings for ${newChunks.length} chunks...`);
     const embeddings = await this.generateEmbeddings(newChunks.map((c) => c.content));
 
     for (let i = 0; i < newChunks.length; i++) {
@@ -210,6 +235,8 @@ export class LocalEmbeddingsManager {
       filter?: Partial<ChunkMetadata>;
     } = {}
   ): Promise<SearchResult[]> {
+    await this.initialize();
+
     const { limit = 10, filter } = options;
     const queryEmbedding = await this.generateEmbedding(query);
 

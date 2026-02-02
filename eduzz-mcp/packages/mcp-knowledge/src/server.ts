@@ -5,25 +5,24 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import cron from 'node-cron';
-import { LocalEmbeddingsManager } from './embeddings/local-client.js';
+import { LocalEmbeddings } from './embeddings/local-embeddings.js';
 import { OpenAPIProcessor } from './processors/openapi.js';
 import { KnowledgeSyncer } from './sync.js';
 
 export interface KnowledgeServerConfig {
-  openaiApiKey: string;
-  anthropicApiKey?: string;
+  openaiApiKey?: string;  // Optional - only for AI image descriptions
+  anthropicApiKey?: string;  // Optional - only for AI image descriptions
   cronSchedule?: string; // Default: '0 3 * * 0' (Sunday 3am)
 }
 
-export function createKnowledgeServer(config: KnowledgeServerConfig): McpServer {
+export function createKnowledgeServer(config: KnowledgeServerConfig = {}): McpServer {
   const server = new McpServer({
     name: 'eduzz-knowledge',
     version: '1.0.0',
   });
 
   const baseDir = join(homedir(), '.eduzz-mcp');
-  const embeddings = new LocalEmbeddingsManager({
-    openaiApiKey: config.openaiApiKey,
+  const embeddings = new LocalEmbeddings({
     storagePath: baseDir,
   });
   const openApiProcessor = new OpenAPIProcessor(baseDir);
@@ -324,9 +323,8 @@ ${result.errors.length > 0 ? `\nErrors:\n${result.errors.join('\n')}` : ''}`;
 
   // Resources
   server.resource(
+    'eduzz-docs-overview',
     'eduzz://docs/overview',
-    'Eduzz Documentation Overview',
-    'text/markdown',
     async () => {
       const overviewPath = join(baseDir, 'raw', 'pages');
 
@@ -380,9 +378,8 @@ ${result.errors.length > 0 ? `\nErrors:\n${result.errors.join('\n')}` : ''}`;
   );
 
   server.resource(
+    'eduzz-openapi-spec',
     'eduzz://openapi/spec.json',
-    'Eduzz OpenAPI Specification',
-    'application/json',
     async () => {
       const spec = openApiProcessor.loadCachedSpec();
 
@@ -413,7 +410,7 @@ ${result.errors.length > 0 ? `\nErrors:\n${result.errors.join('\n')}` : ''}`;
   return server;
 }
 
-export async function startServer(config: KnowledgeServerConfig): Promise<void> {
+export async function startServer(config: KnowledgeServerConfig = {}): Promise<void> {
   const server = createKnowledgeServer(config);
   const transport = new StdioServerTransport();
   await server.connect(transport);
