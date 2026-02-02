@@ -1,177 +1,142 @@
 # Eduzz MCP Suite
 
-A complete MCP (Model Context Protocol) integration suite for the Eduzz platform, providing:
+Suite completa de integração MCP (Model Context Protocol) para a plataforma Eduzz:
 
-- **@eduzz/mcp-config** - Credential and profile management
-- **@eduzz/mcp-knowledge** - Documentation knowledge base with semantic search
-- **@eduzz/mcp-api** - Full API client with auto-generated tools
+- **@eduzz/mcp-config** - Gerenciamento de credenciais e perfis
+- **@eduzz/mcp-knowledge** - Base de conhecimento com busca semântica
+- **@eduzz/mcp-api** - Cliente da API com ferramentas auto-geradas
 
 ## Quick Start
 
-### 1. Install
+### 1. Clonar e Instalar
 
 ```bash
-npm install @eduzz/mcp-config @eduzz/mcp-knowledge @eduzz/mcp-api
+git clone https://github.com/seu-usuario/labzz-mcp-devhub.git
+cd labzz-mcp-devhub/eduzz-mcp
+npm install
+npm run build
 ```
 
-### 2. Configure Credentials
+### 2. Configurar no Claude Code
 
-```bash
-npx eduzz-config setup
-```
-
-This creates a profile with your Eduzz API credentials in `~/.eduzz-mcp/config.json`.
-
-### 3. Sync Knowledge Base
-
-```bash
-npx eduzz-knowledge sync
-```
-
-This crawls the Eduzz documentation and creates a searchable knowledge base.
-
-**No API key required!** Embeddings are generated locally using Transformers.js.
-
-### 4. Add to Claude Desktop
-
-Add to your `claude_desktop_config.json`:
+Copie o arquivo `.mcp.json` para a raiz do seu projeto:
 
 ```json
 {
   "mcpServers": {
     "eduzz-config": {
-      "command": "npx",
-      "args": ["eduzz-config", "serve"]
+      "command": "node",
+      "args": ["./eduzz-mcp/packages/mcp-config/dist/cli.js", "serve"]
     },
     "eduzz-knowledge": {
-      "command": "npx",
-      "args": ["eduzz-knowledge", "serve"]
+      "command": "node",
+      "args": ["./eduzz-mcp/packages/mcp-knowledge/dist/cli.js", "serve"]
     },
     "eduzz-api": {
-      "command": "npx",
-      "args": ["eduzz-api", "serve"]
+      "command": "node",
+      "args": ["./eduzz-mcp/packages/mcp-api/dist/cli.js", "serve"]
     }
   }
 }
 ```
 
-**Note:** No environment variables needed! Everything runs locally.
+### 3. Pronto!
+
+A base de conhecimento já vem **pré-populada** com toda a documentação da Eduzz. Não precisa rodar sync!
+
+**Ferramentas disponíveis:**
+- `eduzz_search` - Busca semântica na documentação
+- `eduzz_get_example` - Exemplos de código por tópico
+- `eduzz_get_endpoint` - Documentação de endpoints da API
+- `eduzz_profile_*` - Gerenciamento de credenciais
 
 ## Packages
 
 ### @eduzz/mcp-config
 
-Manages API credentials with multi-tenant support.
+Gerencia credenciais da API com suporte multi-tenant.
 
 **Tools:**
-- `eduzz_profile_list` - List all profiles
-- `eduzz_profile_switch` - Switch active profile
-- `eduzz_profile_create` - Create new profile
-- `eduzz_profile_delete` - Delete profile
-- `eduzz_profile_active` - Get active profile info
-
-**CLI:**
-```bash
-eduzz-config setup          # Interactive setup
-eduzz-config list           # List profiles
-eduzz-config switch <name>  # Switch profile
-eduzz-config serve          # Start MCP server
-```
+- `eduzz_profile_list` - Listar perfis
+- `eduzz_profile_switch` - Trocar perfil ativo
+- `eduzz_profile_create` - Criar novo perfil
+- `eduzz_profile_delete` - Deletar perfil
+- `eduzz_profile_active` - Info do perfil ativo
 
 ### @eduzz/mcp-knowledge
 
-Knowledge base with semantic search powered by OpenAI embeddings.
+Base de conhecimento com busca semântica usando embeddings locais (Transformers.js).
 
 **Tools:**
-- `eduzz_search` - Semantic search across documentation
-- `eduzz_get_example` - Get code examples by topic/language
-- `eduzz_get_endpoint` - Get API endpoint documentation
-- `eduzz_sync` - Synchronize knowledge base
-- `eduzz_stats` - Knowledge base statistics
+- `eduzz_search` - Busca semântica na documentação
+- `eduzz_get_example` - Exemplos de código por tópico/linguagem
+- `eduzz_get_endpoint` - Documentação de endpoint da API
+- `eduzz_sync` - Sincronizar base de conhecimento
+- `eduzz_stats` - Estatísticas da base
 
-**Resources:**
-- `eduzz://docs/overview` - Documentation overview
-- `eduzz://openapi/spec.json` - OpenAPI specification
-
-**CLI:**
-```bash
-eduzz-knowledge sync         # Sync knowledge base
-eduzz-knowledge sync --force # Force full re-sync
-eduzz-knowledge serve        # Start MCP server
-```
-
-**Environment Variables (all optional):**
-- `OPENAI_API_KEY` - For AI-powered image descriptions
-- `ANTHROPIC_API_KEY` - For AI-powered image descriptions with Claude
-- `EDUZZ_SYNC_SCHEDULE` - Cron schedule for auto-sync
-
-**Note:** No API key is required! Embeddings are generated locally.
+**Recursos:**
+- `eduzz://docs/overview` - Visão geral da documentação
+- `eduzz://openapi/spec.json` - Especificação OpenAPI
 
 ### @eduzz/mcp-api
 
-API client with auto-generated tools from OpenAPI spec.
+Cliente da API com ferramentas auto-geradas do OpenAPI spec.
 
 **Tools:**
-- `eduzz_api_call` - Generic API call
-- `eduzz_api_endpoints` - List available endpoints
-- `eduzz_api_status` - Current API status
-- `eduzz_api_reload` - Reload generated tools
-- Auto-generated tools from OpenAPI (e.g., `eduzz_invoices_list`)
+- `eduzz_api_call` - Chamada genérica à API
+- `eduzz_api_endpoints` - Listar endpoints disponíveis
+- `eduzz_api_status` - Status atual da API
+- `eduzz_api_reload` - Recarregar ferramentas geradas
 
-**CLI:**
-```bash
-eduzz-api serve  # Start MCP server
-```
-
-## Storage
-
-All data is stored in `~/.eduzz-mcp/`:
+## Estrutura de Dados
 
 ```
-~/.eduzz-mcp/
-├── config.json           # Profiles and credentials
-├── knowledge.db.json     # Vector embeddings
+packages/mcp-knowledge/data/
+├── processed/
+│   └── knowledge.db.json     # Embeddings vetoriais
 └── raw/
-    ├── pages/            # Crawled documentation (markdown)
-    ├── images/           # Downloaded images + descriptions
-    ├── code-examples/    # Extracted code examples
-    └── openapi/          # API specifications
+    ├── pages/                # Documentação (markdown)
+    ├── images/               # Imagens + descrições
+    ├── code-examples/        # Exemplos de código
+    └── openapi/              # Especificações da API
 ```
 
-## Development
+## Para Desenvolvedores
+
+### Atualizar a Base de Conhecimento
 
 ```bash
-# Clone and install
-git clone https://github.com/eduzz/mcp-suite
-cd eduzz-mcp
-npm install
+# Sync completo (apaga e recria tudo)
+npm run sync
 
-# Build all packages
-npm run build
-
-# Run tests
-npm test
+# Ou via CLI
+node packages/mcp-knowledge/dist/cli.js sync
 ```
 
-## Multi-Tenant Usage
-
-Create multiple profiles for different environments:
+### Build
 
 ```bash
-# Create sandbox profile
-eduzz-config setup
-# Name: sandbox, Environment: sandbox
-
-# Create production profile
-eduzz-config setup
-# Name: production, Environment: production
-
-# Switch between profiles
-eduzz-config switch production
-
-# Or use profile parameter in API calls
-# eduzz_api_call with profile: "sandbox"
+npm run build        # Build todos os pacotes
+npm test             # Rodar testes
 ```
+
+## Uso Multi-Tenant
+
+Crie perfis para diferentes ambientes:
+
+```bash
+# Via ferramenta MCP
+eduzz_profile_create(name: "sandbox", api_key: "...", api_secret: "...", environment: "sandbox")
+eduzz_profile_create(name: "production", api_key: "...", api_secret: "...", environment: "production")
+
+# Trocar entre perfis
+eduzz_profile_switch(name: "production")
+```
+
+## Requisitos
+
+- Node.js >= 18.0.0
+- Claude Code ou Claude Desktop
 
 ## License
 
