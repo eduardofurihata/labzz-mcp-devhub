@@ -29,8 +29,8 @@ yarn-error.log*
 # Test coverage
 coverage/
 
-# Eduzz MCP data (local)
-~/.eduzz-mcp/
+# User config (credentials - never commit)
+packages/mcp-knowledge/data/config.json
 
 # Package lock files (using npm)
 yarn.lock

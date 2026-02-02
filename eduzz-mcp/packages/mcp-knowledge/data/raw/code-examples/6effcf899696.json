@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/nutror-comment-deleted",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"e14gf6wtjl5i3c0lz36amqkli\",\n3  \"event\": \"nutror.comment_deleted\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"fulano@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"course\": {\n14      \"hash\": \"1feb6e6b27ccaf9edee926908f710808e2d6c7e6\",\n15      \"title\": \"Título do Curso\"\n16    },\n17    \"lesson\": {\n18      \"id\": \"13\",\n19      \"title\": \"Título da Aula\"\n20    },\n21    \"comment\": {\n22      \"text\": \"Olá poderia enviar a receita no meu email?\",\n23      \"id\": \"492\",\n24      \"parentId\": null\n25    },\n26    \"createdAt\": \"2023-09-26T13:51:15Z\"\n27  },\n28  \"sentDate\": \"2024-02-29T14:33:04.634Z\"\n29}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"e14gf6wtjl5i3c0lz36amqkli\",\n3  \"event\": \"nutror.comment_deleted\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"fulano@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"course\": {\n14      \"hash\": \"1feb6e6b27ccaf9edee926908f710808e2d6c7e6\",\n15      \"title\": \"Título do Curso\"\n16    },\n17    \"lesson\": {\n18      \"id\": \"13\",\n19      \"title\": \"Título da Aula\"\n20    },\n21    \"comment\": {\n22      \"text\": \"Olá poderia enviar a receita no meu email?\",\n23      \"id\": \"492\",\n24      \"parentId\": null\n25    },\n26    \"createdAt\": \"2023-09-26T13:51:15Z\"\n27  },\n28  \"sentDate\": \"2024-02-29T14:33:04.634Z\"\n29}",
+      "context": ""
+    }
+  ]
+}

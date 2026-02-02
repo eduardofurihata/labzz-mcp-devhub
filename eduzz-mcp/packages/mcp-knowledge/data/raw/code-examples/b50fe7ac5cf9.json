@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/get-alpaclass-v1-producer-teams-teamId-students",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/students' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/students' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"pages\": 2,\n3  \"page\": 1,\n4  \"itemsPerPage\": 2,\n5  \"totalItems\": 3,\n6  \"items\": [\n7    {\n8      \"id\": \"xPt123\",\n9      \"name\": \"João Carlos\",\n10      \"email\": \"test@test.com\",\n11      \"createdAt\": \"2023-01-01T00:00:00Z\"\n12    },\n13    {\n14      \"id\": \"xPt456\",\n15      \"name\": \"Maria Silva\",\n16      \"email\": \"xpto@test.com\",\n17      \"createdAt\": \"2023-01-01T00:00:00Z\"\n18    }\n19  ]\n20}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"pages\": 2,\n3  \"page\": 1,\n4  \"itemsPerPage\": 2,\n5  \"totalItems\": 3,\n6  \"items\": [\n7    {\n8      \"id\": \"xPt123\",\n9      \"name\": \"João Carlos\",\n10      \"email\": \"test@test.com\",\n11      \"createdAt\": \"2023-01-01T00:00:00Z\"\n12    },\n13    {\n14      \"id\": \"xPt456\",\n15      \"name\": \"Maria Silva\",\n16      \"email\": \"xpto@test.com\",\n17      \"createdAt\": \"2023-01-01T00:00:00Z\"\n18    }\n19  ]\n20}",
+      "context": ""
+    }
+  ]
+}

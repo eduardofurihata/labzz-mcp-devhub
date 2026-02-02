@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/swagger",
+  "examples": [
+    {
+      "language": "version",
+      "code": "2.0.0",
+      "context": ""
+    },
+    {
+      "language": "version",
+      "code": "OAS 3.1",
+      "context": ""
+    }
+  ]
+}

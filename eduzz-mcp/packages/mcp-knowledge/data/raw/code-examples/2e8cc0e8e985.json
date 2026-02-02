@@ -1,0 +1,20 @@
+{
+  "url": "https://developers.eduzz.com/docs/api/create-app",
+  "examples": [
+    {
+      "language": "text",
+      "code": "clientId: 22edfacb-9abd-4dfd-a9be-31a18266aeef\nclientSecret: ebf0cc8f59be0570952782d95dacb486188a9e7b2c9dea0f38a0b9aa97a8cfeb",
+      "context": "DocsAPICriando um Aplicativo"
+    },
+    {
+      "language": "text",
+      "code": "clientId: 22edfacb-9abd-4dfd-a9be-31a18266aeef\nclientSecret: ebf0cc8f59be0570952782d95dacb486188a9e7b2c9dea0f38a0b9aa97a8cfeb",
+      "context": "DocsAPICriando um Aplicativo"
+    },
+    {
+      "language": "js",
+      "code": "clientId: 22edfacb-9abd-4dfd-a9be-31a18266aeef\nclientSecret: ebf0cc8f59be0570952782d95dacb486188a9e7b2c9dea0f38a0b9aa97a8cfeb",
+      "context": ""
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/post-alpaclass-v1-producer-teams-teamId-students",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request POST \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/students' \\\n3\t--header 'Accept: application/json' \\\n4\t--data '\n5{\n6  \"name\": \"Jhon Doe\",\n7  \"email\": \"jhon_doe@eduzz.com\",\n8  \"phone\": \"11999999999\",\n9  \"document\": \"1234567890\",\n10  \"tags\": [\n11    \"tag1\",\n12    \"tag2\"\n13  ]\n14}\n15'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request POST \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/students' \\\n3\t--header 'Accept: application/json' \\\n4\t--data '\n5{\n6  \"name\": \"Jhon Doe\",\n7  \"email\": \"jhon_doe@eduzz.com\",\n8  \"phone\": \"11999999999\",\n9  \"document\": \"1234567890\",\n10  \"tags\": [\n11    \"tag1\",\n12    \"tag2\"\n13  ]\n14}\n15'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"id\": \"xPt123\",\n3  \"name\": \"Jhon Doe\",\n4  \"email\": \"jhon_doe@eduzz.com\",\n5  \"phone\": \"11999999999\",\n6  \"document\": \"1234567890\"\n7}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"xPt123\",\n3  \"name\": \"Jhon Doe\",\n4  \"email\": \"jhon_doe@eduzz.com\",\n5  \"phone\": \"11999999999\",\n6  \"document\": \"1234567890\"\n7}",
+      "context": ""
+    }
+  ]
+}

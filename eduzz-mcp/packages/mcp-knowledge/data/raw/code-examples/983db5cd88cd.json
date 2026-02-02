@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/delete-blinket-v1-attendance-tags-id-attendance-list",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request DELETE \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/:id/attendance-list' \\\n3\t--header 'Accept: application/json' \\\n4\t--data '\n5{\n6  \"attendanceIds\": [\n7    \"9bf4dcae-2340-4433-9079-49b7d46396c3\",\n8    \"9bf4e8c5-0dbb-4acb-8c4d-cf59a54b3ffc\"\n9  ]\n10}\n11'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request DELETE \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/:id/attendance-list' \\\n3\t--header 'Accept: application/json' \\\n4\t--data '\n5{\n6  \"attendanceIds\": [\n7    \"9bf4dcae-2340-4433-9079-49b7d46396c3\",\n8    \"9bf4e8c5-0dbb-4acb-8c4d-cf59a54b3ffc\"\n9  ]\n10}\n11'",
+      "context": ""
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "url": "https://developers.eduzz.com/docs/api/response",
+  "examples": [
+    {
+      "language": "text",
+      "code": "// com resultados\n{\n  \"id\": \"1\",\n  \"name\": \"Fulano da Silva\",\n  \"birthdate\": \"1995-12-01\"\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// com resultados\n{\n  \"id\": \"1\",\n  \"name\": \"Fulano da Silva\",\n  \"birthdate\": \"1995-12-01\"\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "// com resultados\n{\n  \"id\": \"1\",\n  \"name\": \"Fulano da Silva\",\n  \"birthdate\": \"1995-12-01\"\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// sem resultados\n404 - Recurso não encontrado",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// sem resultados\n404 - Recurso não encontrado",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "// sem resultados\n404 - Recurso não encontrado",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// com resultados\n{\n  \"items\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Fulano da Silva\",\n      \"birthdate\": \"1995-12-01\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Ciclano Beltrano\",\n      \"birthdate\": \"1989-08-13\"\n    }\n  ]\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// com resultados\n{\n  \"items\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Fulano da Silva\",\n      \"birthdate\": \"1995-12-01\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Ciclano Beltrano\",\n      \"birthdate\": \"1989-08-13\"\n    }\n  ]\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "// com resultados\n{\n  \"items\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Fulano da Silva\",\n      \"birthdate\": \"1995-12-01\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Ciclano Beltrano\",\n      \"birthdate\": \"1989-08-13\"\n    }\n  ]\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// sem resultados\n{\n  \"items\": []\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// sem resultados\n{\n  \"items\": []\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "// sem resultados\n{\n  \"items\": []\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// com resultados\n// /v1/items?page=1&itemsPerPage=10\n{\n  \"pages\": 100,\n  \"page\": 1,\n  \"itemsPerPage\": 10,\n  \"totalItems\": 101,\n  \"items\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Fulano da Silva\",\n      \"birthdate\": \"1995-12-01\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Ciclano Beltrano\",\n      \"birthdate\": \"1989-08-13\"\n    }\n  ]\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// com resultados\n// /v1/items?page=1&itemsPerPage=10\n{\n  \"pages\": 100,\n  \"page\": 1,\n  \"itemsPerPage\": 10,\n  \"totalItems\": 101,\n  \"items\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Fulano da Silva\",\n      \"birthdate\": \"1995-12-01\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Ciclano Beltrano\",\n      \"birthdate\": \"1989-08-13\"\n    }\n  ]\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "// com resultados\n// /v1/items?page=1&itemsPerPage=10\n{\n  \"pages\": 100,\n  \"page\": 1,\n  \"itemsPerPage\": 10,\n  \"totalItems\": 101,\n  \"items\": [\n    {\n      \"id\": \"1\",\n      \"name\": \"Fulano da Silva\",\n      \"birthdate\": \"1995-12-01\"\n    },\n    {\n      \"id\": \"2\",\n      \"name\": \"Ciclano Beltrano\",\n      \"birthdate\": \"1989-08-13\"\n    }\n  ]\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// sem resultados\n{\n  \"pages\": 1,\n  \"page\": 1,\n  \"itemsPerPage\": 10,\n  \"totalItems\": 0,\n  \"items\": []\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "// sem resultados\n{\n  \"pages\": 1,\n  \"page\": 1,\n  \"itemsPerPage\": 10,\n  \"totalItems\": 0,\n  \"items\": []\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "// sem resultados\n{\n  \"pages\": 1,\n  \"page\": 1,\n  \"itemsPerPage\": 10,\n  \"totalItems\": 0,\n  \"items\": []\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n  \"message\": \"Some error\",\n  \"code\": \"ERR_XPTO\",\n  \"link\": \"https://documentacao-api.eduzz.com/suporte?error=ERR_XPTO\",\n  \"debug\": {}\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n  \"message\": \"Some error\",\n  \"code\": \"ERR_XPTO\",\n  \"link\": \"https://documentacao-api.eduzz.com/suporte?error=ERR_XPTO\",\n  \"debug\": {}\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "{\n  \"message\": \"Some error\",\n  \"code\": \"ERR_XPTO\",\n  \"link\": \"https://documentacao-api.eduzz.com/suporte?error=ERR_XPTO\",\n  \"debug\": {}\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n  \"message\": \"Saldo insuficiente para transferência\",\n  \"code\": \"TRF_001\",\n  \"link\": \"https://documentacao-api.eduzz.com/suporte?error=TRF_001\",\n  \"errors\": [\n    {\n        \"field\": \"amount\",\n        \"message\": \"saldo insuficiente\",\n        \"data\": {\n          \"requested\": 12000.00,\n          \"available\": 10500.00\n        }\n    }\n  ],\n  \"debug\": {}\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n  \"message\": \"Saldo insuficiente para transferência\",\n  \"code\": \"TRF_001\",\n  \"link\": \"https://documentacao-api.eduzz.com/suporte?error=TRF_001\",\n  \"errors\": [\n    {\n        \"field\": \"amount\",\n        \"message\": \"saldo insuficiente\",\n        \"data\": {\n          \"requested\": 12000.00,\n          \"available\": 10500.00\n        }\n    }\n  ],\n  \"debug\": {}\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "{\n  \"message\": \"Saldo insuficiente para transferência\",\n  \"code\": \"TRF_001\",\n  \"link\": \"https://documentacao-api.eduzz.com/suporte?error=TRF_001\",\n  \"errors\": [\n    {\n        \"field\": \"amount\",\n        \"message\": \"saldo insuficiente\",\n        \"data\": {\n          \"requested\": 12000.00,\n          \"available\": 10500.00\n        }\n    }\n  ],\n  \"debug\": {}\n}",
+      "context": ""
+    }
+  ]
+}

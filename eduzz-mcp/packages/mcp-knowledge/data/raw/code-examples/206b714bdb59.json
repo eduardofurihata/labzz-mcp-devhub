@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/get-blinket-v1-attendance-tags-id-attendance-list",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/cb655282-1903-402f-a02d-1f78cd388426/attendance-list' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/cb655282-1903-402f-a02d-1f78cd388426/attendance-list' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"items\": [\n3    \"9bf4dcae-2340-4433-9079-49b7d46396c3\",\n4    \"9bf4e8c5-0dbb-4acb-8c4d-cf59a54b3ffc\"\n5  ]\n6}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"items\": [\n3    \"9bf4dcae-2340-4433-9079-49b7d46396c3\",\n4    \"9bf4e8c5-0dbb-4acb-8c4d-cf59a54b3ffc\"\n5  ]\n6}",
+      "context": ""
+    }
+  ]
+}

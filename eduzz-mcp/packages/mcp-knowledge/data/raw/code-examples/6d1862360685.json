@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/nutror-module-completed",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"uufzv5xh659yhlc8hwj386ftf\",\n3  \"event\": \"nutror.module_completed\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"learner@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"course\": {\n14      \"hash\": \"4bba1d18c02755a13ee97521ae61958c3cf9e665\",\n15      \"title\": \"Título do Curso\"\n16    },\n17    \"lesson\": {\n18      \"id\": \"3866\",\n19      \"title\": \"Título da Aula\"\n20    },\n21    \"module\": {\n22      \"id\": \"3253\",\n23      \"title\": \"Modulo2\"\n24    },\n25    \"createdAt\": \"2023-09-25T19:18:29Z\"\n26  },\n27  \"sentDate\": \"2024-02-29T14:33:02.020Z\"\n28}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"uufzv5xh659yhlc8hwj386ftf\",\n3  \"event\": \"nutror.module_completed\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"learner@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"course\": {\n14      \"hash\": \"4bba1d18c02755a13ee97521ae61958c3cf9e665\",\n15      \"title\": \"Título do Curso\"\n16    },\n17    \"lesson\": {\n18      \"id\": \"3866\",\n19      \"title\": \"Título da Aula\"\n20    },\n21    \"module\": {\n22      \"id\": \"3253\",\n23      \"title\": \"Modulo2\"\n24    },\n25    \"createdAt\": \"2023-09-25T19:18:29Z\"\n26  },\n27  \"sentDate\": \"2024-02-29T14:33:02.020Z\"\n28}",
+      "context": ""
+    }
+  ]
+}

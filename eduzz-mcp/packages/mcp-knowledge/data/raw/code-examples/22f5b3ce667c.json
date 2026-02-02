@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/nutror-lesson-started",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"qs1fcic3rm1oxw25fgup6mumv\",\n3  \"event\": \"nutror.lesson_started\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"learner@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"course\": {\n14      \"hash\": \"4bba1d18c02755a13ee97521ae61958c3cf9e665\",\n15      \"title\": \"Título do Curso\"\n16    },\n17    \"lesson\": {\n18      \"id\": \"3866\",\n19      \"title\": \"Título da Aula\"\n20    },\n21    \"createdAt\": \"2023-09-25T19:17:32Z\"\n22  },\n23  \"sentDate\": \"2024-02-29T14:33:06.214Z\"\n24}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"qs1fcic3rm1oxw25fgup6mumv\",\n3  \"event\": \"nutror.lesson_started\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"learner@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"course\": {\n14      \"hash\": \"4bba1d18c02755a13ee97521ae61958c3cf9e665\",\n15      \"title\": \"Título do Curso\"\n16    },\n17    \"lesson\": {\n18      \"id\": \"3866\",\n19      \"title\": \"Título da Aula\"\n20    },\n21    \"createdAt\": \"2023-09-25T19:17:32Z\"\n22  },\n23  \"sentDate\": \"2024-02-29T14:33:06.214Z\"\n24}",
+      "context": ""
+    }
+  ]
+}

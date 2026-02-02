@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/nutror-enrollment-created",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"pq3vi4zfy3u0ii0f42b11s220\",\n3  \"event\": \"nutror.enrollment_created\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"learner@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"createdAt\": \"2023-09-20 17:25:42\",\n14    \"content\": {\n15      \"hash\": \"6b25298f91736fa32da03d986b354c304ee0442d\",\n16      \"title\": \"Teste cache invite\"\n17    },\n18    \"courses\": [\n19      {\n20        \"hash\": \"6b25298f91736fa32da03d986b354c304ee0442d\",\n21        \"title\": \"Título do Curso\"\n22      }\n23    ]\n24  },\n25  \"sentDate\": \"2024-02-29T14:33:05.056Z\"\n26}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"pq3vi4zfy3u0ii0f42b11s220\",\n3  \"event\": \"nutror.enrollment_created\",\n4  \"data\": {\n5    \"producer\": {\n6      \"email\": \"fulano@eduzz.com\",\n7      \"name\": \"Fulano da Silva\"\n8    },\n9    \"learner\": {\n10      \"email\": \"learner@eduzz.com\",\n11      \"name\": \"Ciclano da Silva\"\n12    },\n13    \"createdAt\": \"2023-09-20 17:25:42\",\n14    \"content\": {\n15      \"hash\": \"6b25298f91736fa32da03d986b354c304ee0442d\",\n16      \"title\": \"Teste cache invite\"\n17    },\n18    \"courses\": [\n19      {\n20        \"hash\": \"6b25298f91736fa32da03d986b354c304ee0442d\",\n21        \"title\": \"Título do Curso\"\n22      }\n23    ]\n24  },\n25  \"sentDate\": \"2024-02-29T14:33:05.056Z\"\n26}",
+      "context": ""
+    }
+  ]
+}

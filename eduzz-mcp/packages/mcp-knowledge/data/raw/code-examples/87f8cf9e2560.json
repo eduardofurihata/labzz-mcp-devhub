@@ -1,0 +1,20 @@
+{
+  "url": "https://developers.eduzz.com/docs/webhook",
+  "examples": [
+    {
+      "language": "text",
+      "code": "{\n  \"id\": \"z154l2pvk6jltotg0xy86glx\" // id do evento,\n  \"event\": \"nutror.lesson_started\" // nome do evento,\n  \"data\": {}, // dados do evento,\n  \"sentDate\": \"2023-08-31T18:34:23.023Z\" // data do evento\n}",
+      "context": "DocsWebhookIntrodução"
+    },
+    {
+      "language": "text",
+      "code": "{\n  \"id\": \"z154l2pvk6jltotg0xy86glx\" // id do evento,\n  \"event\": \"nutror.lesson_started\" // nome do evento,\n  \"data\": {}, // dados do evento,\n  \"sentDate\": \"2023-08-31T18:34:23.023Z\" // data do evento\n}",
+      "context": "DocsWebhookIntrodução"
+    },
+    {
+      "language": "json",
+      "code": "{\n  \"id\": \"z154l2pvk6jltotg0xy86glx\" // id do evento,\n  \"event\": \"nutror.lesson_started\" // nome do evento,\n  \"data\": {}, // dados do evento,\n  \"sentDate\": \"2023-08-31T18:34:23.023Z\" // data do evento\n}",
+      "context": ""
+    }
+  ]
+}

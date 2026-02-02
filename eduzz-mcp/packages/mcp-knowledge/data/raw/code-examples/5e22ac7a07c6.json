@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/get-blinket-v1-events",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/blinket/v1/events' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/blinket/v1/events' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"pages\": 1,\n3  \"page\": 1,\n4  \"itemsPerPage\": 10,\n5  \"totalItems\": 1,\n6  \"items\": [\n7    {\n8      \"id\": \"9552fc0e-574c-4679-a02b-8d2a9d3e1b26\",\n9      \"userId\": \"8d5b4ce7-6466-4ab3-90d9-09fd70848a36\",\n10      \"type\": \"presential\",\n11      \"title\": \"Teste 123657\",\n12      \"description\": \"Teste 123\",\n13      \"saleUrl\": \"teste-123657\",\n14      \"streamUrl\": null,\n15      \"reserveTime\": 10,\n16      \"transmissionLinks\": [],\n17      \"isLive\": false,\n18      \"files\": [],\n19      \"activePrecheckout\": false,\n20      \"imageUrl\": \"https://cdn.eduzz.com/myeduzz/upload/6d/fe/6dfee8c5ee254177951d8ecb15b53f50\",\n21      \"startAt\": \"2022-01-19T17:40:00Z\",\n22      \"endAt\": \"2022-01-19T20:30:00Z\",\n23      \"createdAt\": \"2022-01-10T17:41:26Z\",\n24      \"modifiedAt\": \"2022-01-10T17:41:26Z\",\n25      \"address\": {\n26        \"place\": \"Sorocaba\",\n27        \"country\": \"Brasil\",\n28        \"state\": \"SP\",\n29        \"city\": \"Sorocaba\",\n30        \"district\": \"Centro\",\n31        \"street\": \"Rua XV de Novembro\",\n32        \"complement\": null,\n33        \"number\": \"123\",\n34        \"zip\": \"18000-000\",\n35        \"reference\": null,\n36        \"geolocation\": {\n37          \"latitude\": \"-23.470905\",\n38          \"longitude\": \"-47.4851488\"\n39        },\n40        \"mapUrl\": \"https://www.google.com/maps/place/?q=place_id:ChIJA_VI67yKxZQRG3jQWayZf5Q\"\n41      }\n42    }\n43  ]\n44}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"pages\": 1,\n3  \"page\": 1,\n4  \"itemsPerPage\": 10,\n5  \"totalItems\": 1,\n6  \"items\": [\n7    {\n8      \"id\": \"9552fc0e-574c-4679-a02b-8d2a9d3e1b26\",\n9      \"userId\": \"8d5b4ce7-6466-4ab3-90d9-09fd70848a36\",\n10      \"type\": \"presential\",\n11      \"title\": \"Teste 123657\",\n12      \"description\": \"Teste 123\",\n13      \"saleUrl\": \"teste-123657\",\n14      \"streamUrl\": null,\n15      \"reserveTime\": 10,\n16      \"transmissionLinks\": [],\n17      \"isLive\": false,\n18      \"files\": [],\n19      \"activePrecheckout\": false,\n20      \"imageUrl\": \"https://cdn.eduzz.com/myeduzz/upload/6d/fe/6dfee8c5ee254177951d8ecb15b53f50\",\n21      \"startAt\": \"2022-01-19T17:40:00Z\",\n22      \"endAt\": \"2022-01-19T20:30:00Z\",\n23      \"createdAt\": \"2022-01-10T17:41:26Z\",\n24      \"modifiedAt\": \"2022-01-10T17:41:26Z\",\n25      \"address\": {\n26        \"place\": \"Sorocaba\",\n27        \"country\": \"Brasil\",\n28        \"state\": \"SP\",\n29        \"city\": \"Sorocaba\",\n30        \"district\": \"Centro\",\n31        \"street\": \"Rua XV de Novembro\",\n32        \"complement\": null,\n33        \"number\": \"123\",\n34        \"zip\": \"18000-000\",\n35        \"reference\": null,\n36        \"geolocation\": {\n37          \"latitude\": \"-23.470905\",\n38          \"longitude\": \"-47.4851488\"\n39        },\n40        \"mapUrl\": \"https://www.google.com/maps/place/?q=place_id:ChIJA_VI67yKxZQRG3jQWayZf5Q\"\n41      }\n42    }\n43  ]\n44}",
+      "context": ""
+    }
+  ]
+}

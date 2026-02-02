@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/get-alpaclass-v1-producer-teams-teamId-deliveries-deliveryId-courses",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/deliveries/1/courses' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/deliveries/1/courses' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"pages\": 2,\n3  \"page\": 1,\n4  \"itemsPerPage\": 2,\n5  \"totalItems\": 3,\n6  \"items\": [\n7    {\n8      \"id\": \"NxTajk\",\n9      \"name\": \"Curso de Acupuntura\"\n10    },\n11    {\n12      \"id\": \"zHTbOk\",\n13      \"name\": \"Curso de Podologia\"\n14    }\n15  ]\n16}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"pages\": 2,\n3  \"page\": 1,\n4  \"itemsPerPage\": 2,\n5  \"totalItems\": 3,\n6  \"items\": [\n7    {\n8      \"id\": \"NxTajk\",\n9      \"name\": \"Curso de Acupuntura\"\n10    },\n11    {\n12      \"id\": \"zHTbOk\",\n13      \"name\": \"Curso de Podologia\"\n14    }\n15  ]\n16}",
+      "context": ""
+    }
+  ]
+}

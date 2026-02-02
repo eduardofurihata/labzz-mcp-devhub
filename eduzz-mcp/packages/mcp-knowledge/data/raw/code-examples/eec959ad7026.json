@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/delete-blinket-v1-attendance-tags-id",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request DELETE \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/:id' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request DELETE \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/:id' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    }
+  ]
+}

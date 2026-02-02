@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/get-alpaclass-v1-producer-teams-teamId-students-studentId-enrollments",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/minha-escola/students/aB3cD2eF/enrollments' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/minha-escola/students/aB3cD2eF/enrollments' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"pages\": 1,\n3  \"page\": 1,\n4  \"itemsPerPage\": 3,\n5  \"totalItems\": 2,\n6  \"items\": [\n7    {\n8      \"id\": \"123456\",\n9      \"createdAt\": \"2022-05-28T16:46:55.000Z\",\n10      \"certificateUrl\": null,\n11      \"progress\": 0,\n12      \"course\": {\n13        \"id\": \"NxTajk\",\n14        \"name\": \"Curso Numero 1\"\n15      }\n16    },\n17    {\n18      \"id\": \"789012\",\n19      \"createdAt\": \"2025-05-28T16:46:53.000Z\",\n20      \"certificateUrl\": \"https://certificados.alpaclass.com/download/PliM5w/2/certificado.pdf\",\n21      \"progress\": 100,\n22      \"course\": {\n23        \"id\": \"Jky23B\",\n24        \"name\": \"Curso Numero 2\"\n25      }\n26    }\n27  ]\n28}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"pages\": 1,\n3  \"page\": 1,\n4  \"itemsPerPage\": 3,\n5  \"totalItems\": 2,\n6  \"items\": [\n7    {\n8      \"id\": \"123456\",\n9      \"createdAt\": \"2022-05-28T16:46:55.000Z\",\n10      \"certificateUrl\": null,\n11      \"progress\": 0,\n12      \"course\": {\n13        \"id\": \"NxTajk\",\n14        \"name\": \"Curso Numero 1\"\n15      }\n16    },\n17    {\n18      \"id\": \"789012\",\n19      \"createdAt\": \"2025-05-28T16:46:53.000Z\",\n20      \"certificateUrl\": \"https://certificados.alpaclass.com/download/PliM5w/2/certificado.pdf\",\n21      \"progress\": 100,\n22      \"course\": {\n23        \"id\": \"Jky23B\",\n24        \"name\": \"Curso Numero 2\"\n25      }\n26    }\n27  ]\n28}",
+      "context": ""
+    }
+  ]
+}

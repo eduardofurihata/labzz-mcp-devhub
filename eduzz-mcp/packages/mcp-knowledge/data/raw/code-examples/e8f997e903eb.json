@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/blinket-attendance-assigned",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"eca7c5256ad04d2fbade678a12f4f858\",\n3  \"event\": \"attendance_assigned\",\n4  \"sentDate\": \"2024-01-09T15:00:00.000Z\",\n5  \"data\": {\n6    \"createdAt\": \"2024-01-09T15:00:00.000Z\",\n7    \"producer\": {\n8      \"id\": \"1234\",\n9      \"name\": \"QA Blinket\",\n10      \"email\": \"qa-blinket@eduzz.com\"\n11    },\n12    \"event\": {\n13      \"id\": \"9b056848-beb0-44ff-9e76-d3ac131b6f50\",\n14      \"name\": \"Teste evento\",\n15      \"type\": \"online\"\n16    },\n17    \"participant\": {\n18      \"id\": \"1a31099e-6c47-40e9-8cf8-44fb05eeb4ee\",\n19      \"inviteKey\": \"17337976\",\n20      \"name\": \"Pessoa Teste\",\n21      \"email\": \"test@test.com\",\n22      \"phone\": \"+5599999999999\",\n23      \"document\": {\n24        \"type\": \"cpf\",\n25        \"number\": \"99999999999\"\n26      },\n27      \"status\": \"paid\",\n28      \"assigned\": true,\n29      \"manuallyCreated\": false,\n30      \"checkInAt\": null,\n31      \"tags\": [\n32        {\n33          \"id\": \"9e221e57-fb80-4bd9-845e-2a9684a93d37\",\n34          \"title\": \"teste \",\n35          \"color\": \"#000dffb3\"\n36        }\n37      ],\n38      \"customFields\": {\n39        \"company\": \"Eduzz\",\n40        \"occupation\": \"3\",\n41        \"birthdate\": \"2025-07-09T03:00:00.000Z\",\n42        \"jobTitle\": \"2\"\n43      }\n44    }\n45  }\n46}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"eca7c5256ad04d2fbade678a12f4f858\",\n3  \"event\": \"attendance_assigned\",\n4  \"sentDate\": \"2024-01-09T15:00:00.000Z\",\n5  \"data\": {\n6    \"createdAt\": \"2024-01-09T15:00:00.000Z\",\n7    \"producer\": {\n8      \"id\": \"1234\",\n9      \"name\": \"QA Blinket\",\n10      \"email\": \"qa-blinket@eduzz.com\"\n11    },\n12    \"event\": {\n13      \"id\": \"9b056848-beb0-44ff-9e76-d3ac131b6f50\",\n14      \"name\": \"Teste evento\",\n15      \"type\": \"online\"\n16    },\n17    \"participant\": {\n18      \"id\": \"1a31099e-6c47-40e9-8cf8-44fb05eeb4ee\",\n19      \"inviteKey\": \"17337976\",\n20      \"name\": \"Pessoa Teste\",\n21      \"email\": \"test@test.com\",\n22      \"phone\": \"+5599999999999\",\n23      \"document\": {\n24        \"type\": \"cpf\",\n25        \"number\": \"99999999999\"\n26      },\n27      \"status\": \"paid\",\n28      \"assigned\": true,\n29      \"manuallyCreated\": false,\n30      \"checkInAt\": null,\n31      \"tags\": [\n32        {\n33          \"id\": \"9e221e57-fb80-4bd9-845e-2a9684a93d37\",\n34          \"title\": \"teste \",\n35          \"color\": \"#000dffb3\"\n36        }\n37      ],\n38      \"customFields\": {\n39        \"company\": \"Eduzz\",\n40        \"occupation\": \"3\",\n41        \"birthdate\": \"2025-07-09T03:00:00.000Z\",\n42        \"jobTitle\": \"2\"\n43      }\n44    }\n45  }\n46}",
+      "context": ""
+    }
+  ]
+}

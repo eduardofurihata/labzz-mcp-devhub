@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/alpaclass-student-certificate-accessed",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"4c832x3ynl8dwe7454941xzr5\",\n3  \"event\": \"alpaclass.student_certificate_accessed\",\n4  \"sentDate\": \"2024-06-12T12:00:10.000Z\",\n5  \"data\": {\n6    \"student\": {\n7      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n8      \"name\": \"Fulano da Silva\",\n9      \"email\": \"fulano.s@gmail.com\"\n10    },\n11    \"course\": {\n12      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n13      \"name\": \"Princípios da Programação Orientada a Objetos\"\n14    },\n15    \"team\": {\n16      \"id\": \"16943848cc6495142a8e3011d0173252\",\n17      \"name\": \"Escola de Beltrano\"\n18    },\n19    \"certificateUrl\": \"https://certificados.alpaclass.../ZJ1zjj/certificado.pdf\"\n20  }\n21}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"4c832x3ynl8dwe7454941xzr5\",\n3  \"event\": \"alpaclass.student_certificate_accessed\",\n4  \"sentDate\": \"2024-06-12T12:00:10.000Z\",\n5  \"data\": {\n6    \"student\": {\n7      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n8      \"name\": \"Fulano da Silva\",\n9      \"email\": \"fulano.s@gmail.com\"\n10    },\n11    \"course\": {\n12      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n13      \"name\": \"Princípios da Programação Orientada a Objetos\"\n14    },\n15    \"team\": {\n16      \"id\": \"16943848cc6495142a8e3011d0173252\",\n17      \"name\": \"Escola de Beltrano\"\n18    },\n19    \"certificateUrl\": \"https://certificados.alpaclass.../ZJ1zjj/certificado.pdf\"\n20  }\n21}",
+      "context": ""
+    }
+  ]
+}

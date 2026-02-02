@@ -1,13 +1,13 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
-import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import cron from 'node-cron';
 import { LocalEmbeddings } from './embeddings/local-embeddings.js';
 import { OpenAPIProcessor } from './processors/openapi.js';
 import { KnowledgeSyncer } from './sync.js';
+import { getDataDir } from './paths.js';
 
 export interface KnowledgeServerConfig {
   openaiApiKey?: string;  // Optional - only for AI image descriptions
@@ -21,7 +21,7 @@ export function createKnowledgeServer(config: KnowledgeServerConfig = {}): McpSe
     version: '1.0.0',
   });
 
-  const baseDir = join(homedir(), '.eduzz-mcp');
+  const baseDir = getDataDir();
   const embeddings = new LocalEmbeddings({
     storagePath: baseDir,
   });
@@ -237,14 +237,11 @@ ${Object.entries(endpoint.responses)
   // Tool: Sync knowledge base
   server.tool(
     'eduzz_sync',
-    'Synchronize the knowledge base by crawling the Eduzz documentation',
-    {
-      force: z.boolean().default(false).describe('Force re-index all content'),
-    },
-    async ({ force }) => {
+    'Synchronize the knowledge base by crawling the Eduzz documentation. WARNING: This deletes all existing data and rebuilds from scratch.',
+    {},
+    async () => {
       try {
         const result = await syncer.sync({
-          force,
           openaiApiKey: config.openaiApiKey,
           anthropicApiKey: config.anthropicApiKey,
           onProgress: (msg) => console.log(msg),

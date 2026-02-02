@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/get-alpaclass-v1-producer-teams-teamId-deliveries",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/deliveries' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams/aBc123/deliveries' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"pages\": 2,\n3  \"page\": 1,\n4  \"itemsPerPage\": 2,\n5  \"totalItems\": 3,\n6  \"items\": [\n7    {\n8      \"id\": \"1\",\n9      \"name\": \"Entregando Cursos\",\n10      \"platform\": \"eduzz\",\n11      \"isActive\": true,\n12      \"isSubscription\": false\n13    },\n14    {\n15      \"id\": \"2\",\n16      \"name\": \"Entregando Cursos Avançado\",\n17      \"platform\": \"eduzz\",\n18      \"isActive\": true,\n19      \"isSubscription\": true\n20    }\n21  ]\n22}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"pages\": 2,\n3  \"page\": 1,\n4  \"itemsPerPage\": 2,\n5  \"totalItems\": 3,\n6  \"items\": [\n7    {\n8      \"id\": \"1\",\n9      \"name\": \"Entregando Cursos\",\n10      \"platform\": \"eduzz\",\n11      \"isActive\": true,\n12      \"isSubscription\": false\n13    },\n14    {\n15      \"id\": \"2\",\n16      \"name\": \"Entregando Cursos Avançado\",\n17      \"platform\": \"eduzz\",\n18      \"isActive\": true,\n19      \"isSubscription\": true\n20    }\n21  ]\n22}",
+      "context": ""
+    }
+  ]
+}

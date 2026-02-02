@@ -1,14 +1,13 @@
-import { homedir } from 'node:os';
+import { existsSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
-import { existsSync, mkdirSync } from 'node:fs';
 import { Crawler } from './scraper/crawler.js';
 import { CodeProcessor, ImageProcessor, OpenAPIProcessor } from './processors/index.js';
 import { LocalEmbeddings } from './embeddings/local-embeddings.js';
 import { ChunkMetadata, CrawledPage, DocumentChunk } from './types.js';
 import { createHash } from 'node:crypto';
+import { getDataDir } from './paths.js';
 
 export interface SyncOptions {
-  force?: boolean;
   openaiApiKey?: string;  // Optional - for AI image descriptions
   anthropicApiKey?: string;  // Optional - for AI image descriptions
   onProgress?: (message: string) => void;
@@ -27,7 +26,7 @@ export class KnowledgeSyncer {
   private codeProcessor: CodeProcessor;
 
   constructor() {
-    this.baseDir = join(homedir(), '.eduzz-mcp');
+    this.baseDir = getDataDir();
     this.codeProcessor = new CodeProcessor();
 
     if (!existsSync(this.baseDir)) {
@@ -36,7 +35,7 @@ export class KnowledgeSyncer {
   }
 
   async sync(options: SyncOptions = {}): Promise<SyncResult> {
-    const { force = false, openaiApiKey, anthropicApiKey, onProgress } = options;
+    const { openaiApiKey, anthropicApiKey, onProgress } = options;
 
     const result: SyncResult = {
       pagesProcessed: 0,
@@ -52,6 +51,14 @@ export class KnowledgeSyncer {
     };
 
     try {
+      // Step 0: Clean existing data
+      log('Cleaning existing data...');
+      const rawDir = join(this.baseDir, 'raw');
+      if (existsSync(rawDir)) {
+        rmSync(rawDir, { recursive: true, force: true });
+      }
+      mkdirSync(rawDir, { recursive: true });
+
       // Step 1: Crawl the documentation site
       log('Starting crawl of developers.eduzz.com...');
       const crawler = new Crawler(this.baseDir);
@@ -61,19 +68,22 @@ export class KnowledgeSyncer {
       result.pagesProcessed = pages.length;
       log(`Crawled ${pages.length} pages`);
 
-      // Step 2: Process images
-      log('Processing images...');
+      // Step 2: Process images with OCR (offline, no API needed)
+      log('Processing images with OCR...');
       const imageProcessor = new ImageProcessor();
       const allImages = pages.flatMap((p) => p.images);
 
       if (allImages.length > 0) {
-        // Use AI descriptions if API keys provided, otherwise use alt text
+        // Always use OCR by default (100% offline)
+        // AI descriptions are optional enhancement if API keys provided
         if (openaiApiKey || anthropicApiKey) {
+          log('Using AI for enhanced image descriptions...');
           await imageProcessor.processImagesWithAI(allImages, { openaiApiKey, anthropicApiKey });
           log(`Processed ${allImages.length} images with AI descriptions`);
         } else {
+          // OCR extracts text from images offline
           await imageProcessor.processImages(allImages);
-          log(`Processed ${allImages.length} images (using alt text)`);
+          log(`Processed ${allImages.length} images with OCR`);
         }
         result.imagesProcessed = allImages.length;
       }
@@ -93,10 +103,9 @@ export class KnowledgeSyncer {
         storagePath: this.baseDir,
       });
 
-      if (force) {
-        log('Force sync: clearing existing index...');
-        embeddings.clear();
-      }
+      // Sempre limpa o índice antes de reconstruir
+      log('Clearing existing index...');
+      embeddings.clear();
 
       // Initialize embeddings (downloads model on first run)
       await embeddings.initialize();

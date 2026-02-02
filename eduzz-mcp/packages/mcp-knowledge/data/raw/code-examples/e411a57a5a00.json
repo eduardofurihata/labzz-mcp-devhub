@@ -1,0 +1,65 @@
+{
+  "url": "https://developers.eduzz.com/docs/api/user-token",
+  "examples": [
+    {
+      "language": "text",
+      "code": "const options = {\n\tmethod: 'POST',\n\theaders: { accept: 'application/json' },\n\tbody: JSON.stringify({\n        \"client_id\": \"22edfacb-9abd-4dfd-a9be-31a18266aeef\",\n        \"client_secret\": \"ebf0cc8f59be0570952782d95dacb486188a9e7b2c9dea0f38a0b9aa97a8cfeb\",\n        \"code\": \"xruWGHBwDdlR2JHjv3HWwUOf61FBODcVADsioMkdz2g\",\n        \"redirect_uri\": \"https://h3llow0rld.com.br/callback\",\n        \"grant_type\": \"authorization_code\"\n    })\n};\n\nfetch('https://accounts-api.eduzz.com/oauth/token', options)\n\t.then(response => response.json())\n\t.then(response => console.log(response))\n\t.catch(err => console.error(err))",
+      "context": "DocsAPIAutenticação de Usuário"
+    },
+    {
+      "language": "text",
+      "code": "const options = {\n\tmethod: 'POST',\n\theaders: { accept: 'application/json' },\n\tbody: JSON.stringify({\n        \"client_id\": \"22edfacb-9abd-4dfd-a9be-31a18266aeef\",\n        \"client_secret\": \"ebf0cc8f59be0570952782d95dacb486188a9e7b2c9dea0f38a0b9aa97a8cfeb\",\n        \"code\": \"xruWGHBwDdlR2JHjv3HWwUOf61FBODcVADsioMkdz2g\",\n        \"redirect_uri\": \"https://h3llow0rld.com.br/callback\",\n        \"grant_type\": \"authorization_code\"\n    })\n};\n\nfetch('https://accounts-api.eduzz.com/oauth/token', options)\n\t.then(response => response.json())\n\t.then(response => console.log(response))\n\t.catch(err => console.error(err))",
+      "context": "DocsAPIAutenticação de Usuário"
+    },
+    {
+      "language": "javascript",
+      "code": "const options = {\n\tmethod: 'POST',\n\theaders: { accept: 'application/json' },\n\tbody: JSON.stringify({\n        \"client_id\": \"22edfacb-9abd-4dfd-a9be-31a18266aeef\",\n        \"client_secret\": \"ebf0cc8f59be0570952782d95dacb486188a9e7b2c9dea0f38a0b9aa97a8cfeb\",\n        \"code\": \"xruWGHBwDdlR2JHjv3HWwUOf61FBODcVADsioMkdz2g\",\n        \"redirect_uri\": \"https://h3llow0rld.com.br/callback\",\n        \"grant_type\": \"authorization_code\"\n    })\n};\n\nfetch('https://accounts-api.eduzz.com/oauth/token', options)\n\t.then(response => response.json())\n\t.then(response => console.log(response))\n\t.catch(err => console.error(err))",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n  \"refresh_token\": null,\n  \"id\": \"16305ca0-e8c1-4eb9-81ec-2c1edeb17200\",\n  \"authenticated_userid\": \"0b19bf3d-b1f6-47cf-8a84-9fb22a9ae63b ,98239281\",\n  \"credential\": {\n    \"id\": \"71674a7e-3e45-4d14-8dbc-d6c35682f4c0\"\n  },\n  \"access_token\": \"qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w==\",\n  \"expires_in\": 0,\n  \"scope\": \"webhook_read webhook_write\",\n  \"ttl\": null,\n  \"created_at\": 1709822571,\n  \"service\": null,\n  \"token_type\": \"bearer\",\n  \"user\": {\n    \"id\": \"0b19bf3d-b1f6-47cf-8a84-9fb22a9ae63b \",\n    \"eduzzId\": 98239281,\n    \"nutrorId\": 837462,\n    \"eduzz_id\": 98239281,\n    \"nutror_id\": 837462,\n    \"name\": \"QA Eduzz\",\n    \"email\": \"qa@eduzz.com\",\n    \"picture\": \"//cdn.eduzzcdn.com/myeduzz/upload/72/a0/72a099bb921a4277917448d6e38c92c0\"\n  }\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n  \"refresh_token\": null,\n  \"id\": \"16305ca0-e8c1-4eb9-81ec-2c1edeb17200\",\n  \"authenticated_userid\": \"0b19bf3d-b1f6-47cf-8a84-9fb22a9ae63b ,98239281\",\n  \"credential\": {\n    \"id\": \"71674a7e-3e45-4d14-8dbc-d6c35682f4c0\"\n  },\n  \"access_token\": \"qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w==\",\n  \"expires_in\": 0,\n  \"scope\": \"webhook_read webhook_write\",\n  \"ttl\": null,\n  \"created_at\": 1709822571,\n  \"service\": null,\n  \"token_type\": \"bearer\",\n  \"user\": {\n    \"id\": \"0b19bf3d-b1f6-47cf-8a84-9fb22a9ae63b \",\n    \"eduzzId\": 98239281,\n    \"nutrorId\": 837462,\n    \"eduzz_id\": 98239281,\n    \"nutror_id\": 837462,\n    \"name\": \"QA Eduzz\",\n    \"email\": \"qa@eduzz.com\",\n    \"picture\": \"//cdn.eduzzcdn.com/myeduzz/upload/72/a0/72a099bb921a4277917448d6e38c92c0\"\n  }\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "{\n  \"refresh_token\": null,\n  \"id\": \"16305ca0-e8c1-4eb9-81ec-2c1edeb17200\",\n  \"authenticated_userid\": \"0b19bf3d-b1f6-47cf-8a84-9fb22a9ae63b ,98239281\",\n  \"credential\": {\n    \"id\": \"71674a7e-3e45-4d14-8dbc-d6c35682f4c0\"\n  },\n  \"access_token\": \"qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w==\",\n  \"expires_in\": 0,\n  \"scope\": \"webhook_read webhook_write\",\n  \"ttl\": null,\n  \"created_at\": 1709822571,\n  \"service\": null,\n  \"token_type\": \"bearer\",\n  \"user\": {\n    \"id\": \"0b19bf3d-b1f6-47cf-8a84-9fb22a9ae63b \",\n    \"eduzzId\": 98239281,\n    \"nutrorId\": 837462,\n    \"eduzz_id\": 98239281,\n    \"nutror_id\": 837462,\n    \"name\": \"QA Eduzz\",\n    \"email\": \"qa@eduzz.com\",\n    \"picture\": \"//cdn.eduzzcdn.com/myeduzz/upload/72/a0/72a099bb921a4277917448d6e38c92c0\"\n  }\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "const options = {\n\tmethod: 'GET',\n\theaders: { \n        accept: 'application/json' \n        // Este token é o mesmo gerado no passo anterior. Não esqueça do bearer\n        authorization: 'bearer qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w=='\n    }\n};\n\nfetch('https://api.eduzz.com/accounts/v1/me', options)\n    .then(response => response.json())\n    .then(response => console.log(response))\n    .catch(err => console.error(err))",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "const options = {\n\tmethod: 'GET',\n\theaders: { \n        accept: 'application/json' \n        // Este token é o mesmo gerado no passo anterior. Não esqueça do bearer\n        authorization: 'bearer qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w=='\n    }\n};\n\nfetch('https://api.eduzz.com/accounts/v1/me', options)\n    .then(response => response.json())\n    .then(response => console.log(response))\n    .catch(err => console.error(err))",
+      "context": ""
+    },
+    {
+      "language": "javascript",
+      "code": "const options = {\n\tmethod: 'GET',\n\theaders: { \n        accept: 'application/json' \n        // Este token é o mesmo gerado no passo anterior. Não esqueça do bearer\n        authorization: 'bearer qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w=='\n    }\n};\n\nfetch('https://api.eduzz.com/accounts/v1/me', options)\n    .then(response => response.json())\n    .then(response => console.log(response))\n    .catch(err => console.error(err))",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n    \"id\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"fulanodasilva@gmail.com\"\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n    \"id\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"fulanodasilva@gmail.com\"\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "{\n    \"id\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"fulanodasilva@gmail.com\"\n}",
+      "context": ""
+    }
+  ]
+}

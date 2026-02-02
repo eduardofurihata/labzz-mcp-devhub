@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/put-blinket-v1-attendance-tags-id",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request PUT \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/:id' \\\n3\t--header 'Accept: application/json' \\\n4\t--data '\n5{\n6  \"title\": \"New Title\",\n7  \"color\": \"#00FF00\"\n8}\n9'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request PUT \\\n2\t--url 'https://api.eduzz.com/blinket/v1/attendance-tags/:id' \\\n3\t--header 'Accept: application/json' \\\n4\t--data '\n5{\n6  \"title\": \"New Title\",\n7  \"color\": \"#00FF00\"\n8}\n9'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"id\": \"795ad3b7-6dc6-4f7b-8418-c2e496f99481\",\n3  \"title\": \"ABC\",\n4  \"color\": \"#FF0000\",\n5  \"createdAt\": \"2021-06-07T16:03:01Z\",\n6  \"modifiedAt\": \"2021-06-07T16:03:01Z\"\n7}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"795ad3b7-6dc6-4f7b-8418-c2e496f99481\",\n3  \"title\": \"ABC\",\n4  \"color\": \"#FF0000\",\n5  \"createdAt\": \"2021-06-07T16:03:01Z\",\n6  \"modifiedAt\": \"2021-06-07T16:03:01Z\"\n7}",
+      "context": ""
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/alpaclass-student-lesson-finished",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"4c832x3ynl8dwe7454941xzr5\",\n3  \"event\": \"alpaclass.student_lesson_finished\",\n4  \"sentDate\": \"2024-06-12T12:00:10.000Z\",\n5  \"data\": {\n6    \"progress\": 50,\n7    \"student\": {\n8      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n9      \"name\": \"Fulano da Silva\",\n10      \"email\": \"fulano.s@gmail.com\"\n11    },\n12    \"lesson\": {\n13      \"id\": \"6220a030be5f7a8c4760d3e9b4d5d9ee\",\n14      \"name\": \"A história do POO\"\n15    },\n16    \"module\": {\n17      \"id\": \"22884db148f0ffb0d830ba431102b0b5\",\n18      \"name\": \"Módulo 1\"\n19    },\n20    \"course\": {\n21      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n22      \"name\": \"Princípios da Programação Orientada a Objetos\"\n23    },\n24    \"team\": {\n25      \"id\": \"16943848cc6495142a8e3011d0173252\",\n26      \"name\": \"Escola de Beltrano\"\n27    }\n28  }\n29}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"4c832x3ynl8dwe7454941xzr5\",\n3  \"event\": \"alpaclass.student_lesson_finished\",\n4  \"sentDate\": \"2024-06-12T12:00:10.000Z\",\n5  \"data\": {\n6    \"progress\": 50,\n7    \"student\": {\n8      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n9      \"name\": \"Fulano da Silva\",\n10      \"email\": \"fulano.s@gmail.com\"\n11    },\n12    \"lesson\": {\n13      \"id\": \"6220a030be5f7a8c4760d3e9b4d5d9ee\",\n14      \"name\": \"A história do POO\"\n15    },\n16    \"module\": {\n17      \"id\": \"22884db148f0ffb0d830ba431102b0b5\",\n18      \"name\": \"Módulo 1\"\n19    },\n20    \"course\": {\n21      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n22      \"name\": \"Princípios da Programação Orientada a Objetos\"\n23    },\n24    \"team\": {\n25      \"id\": \"16943848cc6495142a8e3011d0173252\",\n26      \"name\": \"Escola de Beltrano\"\n27    }\n28  }\n29}",
+      "context": ""
+    }
+  ]
+}

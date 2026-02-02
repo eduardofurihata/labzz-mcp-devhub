@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/blinket-attendance-checkin",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"a11f2a56ccbe4f5d9e452ad8a74bd52b\",\n3  \"event\": \"blinket.attendance_checkin\",\n4  \"sentDate\": \"2024-01-20T15:00:00.000Z\",\n5  \"data\": {\n6    \"producer\": {\n7      \"id\": \"1234\",\n8      \"name\": \"João Silva\",\n9      \"email\": \"joaosilva@teste.com\"\n10    },\n11    \"event\": {\n12      \"id\": \"9b056848-beb0-44ff-9e76-d3ac131b6f50\",\n13      \"name\": \"Teste evento\",\n14      \"type\": \"online\"\n15    },\n16    \"participant\": {\n17      \"id\": \"1a31099e-6c47-40e9-8cf8-44fb05eeb4ee\",\n18      \"inviteKey\": \"99999999\",\n19      \"name\": \"Maria Silva\",\n20      \"email\": \"mariasilva@teste.com\",\n21      \"phone\": \"+5515999999999\",\n22      \"document\": {\n23        \"type\": \"cpf\",\n24        \"number\": \"99999999999\"\n25      },\n26      \"status\": \"paid\",\n27      \"assigned\": true,\n28      \"manuallyCreated\": false,\n29      \"checkInAt\": \"2024-01-09T14:25:31.098Z\",\n30      \"tags\": [\n31        {\n32          \"id\": \"9e221e57-fb80-4bd9-845e-2a9684a93d37\",\n33          \"title\": \"teste \",\n34          \"color\": \"#000dffb3\"\n35        }\n36      ],\n37      \"customFields\": {\n38        \"company\": \"Eduzz\",\n39        \"occupation\": \"3\",\n40        \"birthdate\": \"2025-07-09T03:00:00.000Z\",\n41        \"jobTitle\": \"2\"\n42      }\n43    },\n44    \"createdAt\": \"2024-01-20T15:00:00.000Z\"\n45  }\n46}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"a11f2a56ccbe4f5d9e452ad8a74bd52b\",\n3  \"event\": \"blinket.attendance_checkin\",\n4  \"sentDate\": \"2024-01-20T15:00:00.000Z\",\n5  \"data\": {\n6    \"producer\": {\n7      \"id\": \"1234\",\n8      \"name\": \"João Silva\",\n9      \"email\": \"joaosilva@teste.com\"\n10    },\n11    \"event\": {\n12      \"id\": \"9b056848-beb0-44ff-9e76-d3ac131b6f50\",\n13      \"name\": \"Teste evento\",\n14      \"type\": \"online\"\n15    },\n16    \"participant\": {\n17      \"id\": \"1a31099e-6c47-40e9-8cf8-44fb05eeb4ee\",\n18      \"inviteKey\": \"99999999\",\n19      \"name\": \"Maria Silva\",\n20      \"email\": \"mariasilva@teste.com\",\n21      \"phone\": \"+5515999999999\",\n22      \"document\": {\n23        \"type\": \"cpf\",\n24        \"number\": \"99999999999\"\n25      },\n26      \"status\": \"paid\",\n27      \"assigned\": true,\n28      \"manuallyCreated\": false,\n29      \"checkInAt\": \"2024-01-09T14:25:31.098Z\",\n30      \"tags\": [\n31        {\n32          \"id\": \"9e221e57-fb80-4bd9-845e-2a9684a93d37\",\n33          \"title\": \"teste \",\n34          \"color\": \"#000dffb3\"\n35        }\n36      ],\n37      \"customFields\": {\n38        \"company\": \"Eduzz\",\n39        \"occupation\": \"3\",\n40        \"birthdate\": \"2025-07-09T03:00:00.000Z\",\n41        \"jobTitle\": \"2\"\n42      }\n43    },\n44    \"createdAt\": \"2024-01-20T15:00:00.000Z\"\n45  }\n46}",
+      "context": ""
+    }
+  ]
+}

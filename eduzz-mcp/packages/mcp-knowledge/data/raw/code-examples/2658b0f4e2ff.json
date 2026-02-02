@@ -1,0 +1,35 @@
+{
+  "url": "https://developers.eduzz.com/docs/api/personal-token",
+  "examples": [
+    {
+      "language": "text",
+      "code": "const options = {\n\tmethod: 'GET',\n\theaders: { \n        'content-type': 'application/json'\n        authorization: 'bearer qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w=='\n    }\n};\n\nfetch('https://api.eduzz.com/accounts/v1/me', options)\n    .then(response => response.json())\n    .then(response => console.log(response))\n    .catch(err => console.error(err))",
+      "context": "DocsAPIToken Pessoal"
+    },
+    {
+      "language": "text",
+      "code": "const options = {\n\tmethod: 'GET',\n\theaders: { \n        'content-type': 'application/json'\n        authorization: 'bearer qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w=='\n    }\n};\n\nfetch('https://api.eduzz.com/accounts/v1/me', options)\n    .then(response => response.json())\n    .then(response => console.log(response))\n    .catch(err => console.error(err))",
+      "context": "DocsAPIToken Pessoal"
+    },
+    {
+      "language": "javascript",
+      "code": "const options = {\n\tmethod: 'GET',\n\theaders: { \n        'content-type': 'application/json'\n        authorization: 'bearer qzrUZcm4dISz/ayXgq7g9+GmusYbXHmIpJ7fbLYDIjUPtNwAN1rrsRZbeJ6e6tAlSUSy3w=='\n    }\n};\n\nfetch('https://api.eduzz.com/accounts/v1/me', options)\n    .then(response => response.json())\n    .then(response => console.log(response))\n    .catch(err => console.error(err))",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n    \"id\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"fulanodasilva@gmail.com\"\n}",
+      "context": ""
+    },
+    {
+      "language": "text",
+      "code": "{\n    \"id\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"fulanodasilva@gmail.com\"\n}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "{\n    \"id\": \"00000000-0000-0000-0000-000000000000\",\n    \"name\": \"Fulano da Silva\",\n    \"email\": \"fulanodasilva@gmail.com\"\n}",
+      "context": ""
+    }
+  ]
+}

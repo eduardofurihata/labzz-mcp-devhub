@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__eduzz-knowledge__eduzz_get_endpoint",
+      "mcp__eduzz-knowledge__eduzz_get_example"
+    ]
+  }
+}

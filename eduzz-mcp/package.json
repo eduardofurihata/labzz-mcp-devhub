@@ -10,7 +10,8 @@
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces",
     "lint": "npm run lint --workspaces",
-    "clean": "npm run clean --workspaces"
+    "clean": "npm run clean --workspaces",
+    "sync": "npm run sync -w @eduzz/mcp-knowledge"
   },
   "keywords": [
     "eduzz",

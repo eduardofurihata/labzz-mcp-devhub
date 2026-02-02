@@ -1,0 +1,25 @@
+{
+  "url": "https://developers.eduzz.com/reference/api/get-alpaclass-v1-producer-teams",
+  "examples": [
+    {
+      "language": "text",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "shell",
+      "code": "1curl --request GET \\\n2\t--url 'https://api.eduzz.com/alpaclass/v1/producer/teams' \\\n3\t--header 'Accept: application/json'",
+      "context": ""
+    },
+    {
+      "language": "sm",
+      "code": "1{\n2  \"items\": [\n3    {\n4      \"id\": \"abcdef\",\n5      \"name\": \"Escola ABC\",\n6      \"url\": \"https://abcdef.alpaclass.com\"\n7    },\n8    {\n9      \"id\": \"nova-escola\",\n10      \"name\": \"Nova escola\",\n11      \"url\": \"https://novaescola.com.br\"\n12    },\n13    {\n14      \"id\": \"escola-modelo\",\n15      \"name\": \"Escola Modelo\",\n16      \"url\": \"https://escola-modelo.com.br\"\n17    }\n18  ]\n19}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"items\": [\n3    {\n4      \"id\": \"abcdef\",\n5      \"name\": \"Escola ABC\",\n6      \"url\": \"https://abcdef.alpaclass.com\"\n7    },\n8    {\n9      \"id\": \"nova-escola\",\n10      \"name\": \"Nova escola\",\n11      \"url\": \"https://novaescola.com.br\"\n12    },\n13    {\n14      \"id\": \"escola-modelo\",\n15      \"name\": \"Escola Modelo\",\n16      \"url\": \"https://escola-modelo.com.br\"\n17    }\n18  ]\n19}",
+      "context": ""
+    }
+  ]
+}

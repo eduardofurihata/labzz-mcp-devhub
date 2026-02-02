@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/alpaclass-student-module-finished",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"event\": \"alpaclass.student_module_finished\",\n3  \"data\": {\n4    \"student\": {\n5      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n6      \"name\": \"Fulano da Silva\",\n7      \"email\": \"fulano.s@gmail.com\"\n8    },\n9    \"module\": {\n10      \"id\": \"22884db148f0ffb0d830ba431102b0b5\",\n11      \"name\": \"Módulo 1\"\n12    },\n13    \"course\": {\n14      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n15      \"name\": \"Princípios da Programação Orientada a Objetos\"\n16    },\n17    \"team\": {\n18      \"id\": \"16943848cc6495142a8e3011d0173252\",\n19      \"name\": \"Escola de Beltrano\"\n20    }\n21  }\n22}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"event\": \"alpaclass.student_module_finished\",\n3  \"data\": {\n4    \"student\": {\n5      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n6      \"name\": \"Fulano da Silva\",\n7      \"email\": \"fulano.s@gmail.com\"\n8    },\n9    \"module\": {\n10      \"id\": \"22884db148f0ffb0d830ba431102b0b5\",\n11      \"name\": \"Módulo 1\"\n12    },\n13    \"course\": {\n14      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n15      \"name\": \"Princípios da Programação Orientada a Objetos\"\n16    },\n17    \"team\": {\n18      \"id\": \"16943848cc6495142a8e3011d0173252\",\n19      \"name\": \"Escola de Beltrano\"\n20    }\n21  }\n22}",
+      "context": ""
+    }
+  ]
+}

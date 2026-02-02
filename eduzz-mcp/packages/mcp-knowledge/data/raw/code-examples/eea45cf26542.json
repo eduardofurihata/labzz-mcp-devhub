@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/alpaclass-student-lesson-marked-as-favorite",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"4c832x3ynl8dwe7454941xzr5\",\n3  \"event\": \"alpaclass.student_lesson_marked_as_favorite\",\n4  \"sentDate\": \"2024-06-12T12:00:10.000Z\",\n5  \"data\": {\n6    \"student\": {\n7      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n8      \"name\": \"Fulano da Silva\",\n9      \"email\": \"fulano.s@gmail.com\"\n10    },\n11    \"lesson\": {\n12      \"id\": \"6220a030be5f7a8c4760d3e9b4d5d9ee\",\n13      \"name\": \"A história do POO\"\n14    },\n15    \"module\": {\n16      \"id\": \"22884db148f0ffb0d830ba431102b0b5\",\n17      \"name\": \"Módulo 1\"\n18    },\n19    \"course\": {\n20      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n21      \"name\": \"Princípios da Programação Orientada a Objetos\"\n22    },\n23    \"team\": {\n24      \"id\": \"16943848cc6495142a8e3011d0173252\",\n25      \"name\": \"Escola de Beltrano\"\n26    }\n27  }\n28}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"4c832x3ynl8dwe7454941xzr5\",\n3  \"event\": \"alpaclass.student_lesson_marked_as_favorite\",\n4  \"sentDate\": \"2024-06-12T12:00:10.000Z\",\n5  \"data\": {\n6    \"student\": {\n7      \"id\": \"457391c9c82bfdcbb4947278c0401e41\",\n8      \"name\": \"Fulano da Silva\",\n9      \"email\": \"fulano.s@gmail.com\"\n10    },\n11    \"lesson\": {\n12      \"id\": \"6220a030be5f7a8c4760d3e9b4d5d9ee\",\n13      \"name\": \"A história do POO\"\n14    },\n15    \"module\": {\n16      \"id\": \"22884db148f0ffb0d830ba431102b0b5\",\n17      \"name\": \"Módulo 1\"\n18    },\n19    \"course\": {\n20      \"id\": \"046d47672cf6212d201d6e8b0c191e73\",\n21      \"name\": \"Princípios da Programação Orientada a Objetos\"\n22    },\n23    \"team\": {\n24      \"id\": \"16943848cc6495142a8e3011d0173252\",\n25      \"name\": \"Escola de Beltrano\"\n26    }\n27  }\n28}",
+      "context": ""
+    }
+  ]
+}

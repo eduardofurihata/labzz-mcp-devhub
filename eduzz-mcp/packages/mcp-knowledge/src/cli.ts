@@ -5,7 +5,7 @@ import { KnowledgeSyncer } from './sync.js';
 const args = process.argv.slice(2);
 const command = args[0];
 
-async function sync(force: boolean = false): Promise<void> {
+async function sync(): Promise<void> {
   // API keys are optional - only used for AI image descriptions
   const openaiApiKey = process.env.OPENAI_API_KEY;
   const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
@@ -13,16 +13,18 @@ async function sync(force: boolean = false): Promise<void> {
   const syncer = new KnowledgeSyncer();
 
   console.log('Starting knowledge base sync...');
-  console.log('Using local embeddings (no API key required)\n');
+  console.log('This will DELETE existing data and rebuild from scratch.\n');
+  console.log('Using:');
+  console.log('  - Local embeddings (no API key required)');
+  console.log('  - Tesseract OCR for image text extraction (offline)\n');
 
   if (openaiApiKey || anthropicApiKey) {
-    console.log('AI image descriptions: enabled\n');
+    console.log('AI image descriptions: enabled (enhanced mode)\n');
   } else {
-    console.log('AI image descriptions: disabled (using alt text)\n');
+    console.log('AI image descriptions: disabled (using OCR only)\n');
   }
 
   const result = await syncer.sync({
-    force,
     openaiApiKey,
     anthropicApiKey,
     onProgress: (msg) => console.log(msg),
@@ -60,16 +62,16 @@ function showHelp(): void {
 Eduzz MCP Knowledge CLI
 
 Usage:
-  eduzz-knowledge <command> [options]
+  eduzz-knowledge <command>
 
 Commands:
-  sync [--force]    Sync the knowledge base from Eduzz documentation
-  serve             Start the MCP server
-  help              Show this help message
+  sync      Sync the knowledge base (deletes existing and rebuilds)
+  serve     Start the MCP server
+  help      Show this help message
 
 Environment Variables (all optional):
-  OPENAI_API_KEY         For AI-powered image descriptions (optional)
-  ANTHROPIC_API_KEY      For AI-powered image descriptions (optional)
+  OPENAI_API_KEY         For AI-powered image descriptions
+  ANTHROPIC_API_KEY      For AI-powered image descriptions
   EDUZZ_SYNC_SCHEDULE    Cron schedule for auto-sync (default: 0 3 * * 0)
 
 Note: No API key is required for basic functionality!
@@ -77,7 +79,7 @@ Note: No API key is required for basic functionality!
 
 Examples:
   eduzz-knowledge sync
-  eduzz-knowledge sync --force
+  ANTHROPIC_API_KEY=sk-xxx eduzz-knowledge sync
   eduzz-knowledge serve
 `);
 }
@@ -85,8 +87,7 @@ Examples:
 async function main(): Promise<void> {
   switch (command) {
     case 'sync':
-      const force = args.includes('--force') || args.includes('-f');
-      await sync(force);
+      await sync();
       break;
     case 'serve':
       await serve();

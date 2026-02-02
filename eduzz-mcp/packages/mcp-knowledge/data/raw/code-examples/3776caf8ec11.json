@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/myeduzz-contract-pix-attempted",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"0f8488b2-4994-4736-804a-da5c46811461\",\n3  \"event\": \"contract_pix_attempted\",\n4  \"data\": {\n5    \"producer\": {\n6      \"id\": \"123456\",\n7      \"name\": \"Example Producer\",\n8      \"email\": \"example-producer@mail.com\"\n9    },\n10    \"invoice\": {\n11      \"id\": \"1234567\",\n12      \"payment\": {\n13        \"method\": \"pix\",\n14        \"pix\": {\n15          \"base64Code\": \"data:image/png;base64,example-base64-code\",\n16          \"qrCode\": \"example\"\n17        }\n18      },\n19      \"isNegotiation\": false,\n20      \"status\": \"open\",\n21      \"dueDate\": \"2025-01-01T10:00:00.000Z\",\n22      \"attemptDate\": \"2025-01-01T10:00:00.000Z\"\n23    },\n24    \"contract\": {\n25      \"id\": \"12345678\",\n26      \"payment\": {\n27        \"method\": \"pix\"\n28      },\n29      \"status\": \"upToDate\",\n30      \"createdAt\": \"2025-05-29T11:38:34.000Z\",\n31      \"updatedAt\": \"2025-06-02T00:00:21.000Z\"\n32    },\n33    \"customer\": {\n34      \"id\": \"87654321\",\n35      \"name\": \"Example Customer\",\n36      \"email\": \"example-customer@mail.com\"\n37    }\n38  },\n39  \"sentDate\": \"2025-08-15T16:42:10.000Z\"\n40}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"0f8488b2-4994-4736-804a-da5c46811461\",\n3  \"event\": \"contract_pix_attempted\",\n4  \"data\": {\n5    \"producer\": {\n6      \"id\": \"123456\",\n7      \"name\": \"Example Producer\",\n8      \"email\": \"example-producer@mail.com\"\n9    },\n10    \"invoice\": {\n11      \"id\": \"1234567\",\n12      \"payment\": {\n13        \"method\": \"pix\",\n14        \"pix\": {\n15          \"base64Code\": \"data:image/png;base64,example-base64-code\",\n16          \"qrCode\": \"example\"\n17        }\n18      },\n19      \"isNegotiation\": false,\n20      \"status\": \"open\",\n21      \"dueDate\": \"2025-01-01T10:00:00.000Z\",\n22      \"attemptDate\": \"2025-01-01T10:00:00.000Z\"\n23    },\n24    \"contract\": {\n25      \"id\": \"12345678\",\n26      \"payment\": {\n27        \"method\": \"pix\"\n28      },\n29      \"status\": \"upToDate\",\n30      \"createdAt\": \"2025-05-29T11:38:34.000Z\",\n31      \"updatedAt\": \"2025-06-02T00:00:21.000Z\"\n32    },\n33    \"customer\": {\n34      \"id\": \"87654321\",\n35      \"name\": \"Example Customer\",\n36      \"email\": \"example-customer@mail.com\"\n37    }\n38  },\n39  \"sentDate\": \"2025-08-15T16:42:10.000Z\"\n40}",
+      "context": ""
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "url": "https://developers.eduzz.com/reference/webhook/blinket-ticket-edited",
+  "examples": [
+    {
+      "language": "max",
+      "code": "1{\n2  \"id\": \"b07a59be974e47d192bd9e1951daea47\",\n3  \"event\": \"blinket.ticket_edited\",\n4  \"sentDate\": \"2024-01-20T15:00:00.000Z\",\n5  \"data\": {\n6    \"producer\": {\n7      \"id\": \"1234\",\n8      \"name\": \"João Silva\",\n9      \"email\": \"joaosilva@teste.com\"\n10    },\n11    \"event\": {\n12      \"id\": \"9b056848-beb0-44ff-9e76-d3ac131b6f50\",\n13      \"name\": \"Teste evento\",\n14      \"type\": \"online\"\n15    },\n16    \"tickets\": [\n17      {\n18        \"name\": \"Padrão\",\n19        \"showOnEventPage\": true,\n20        \"isPaid\": true,\n21        \"isUnlimited\": false,\n22        \"buyLimit\": 0,\n23        \"buyMinimum\": 0,\n24        \"batches\": [\n25          {\n26            \"contentId\": \"1733797\",\n27            \"name\": \"Lote 1\",\n28            \"quantity\": 100,\n29            \"startSalesAt\": \"2024-01-09T15:00:00.000Z\",\n30            \"endSalesAt\": \"2024-01-19T15:00:00.000Z\",\n31            \"price\": {\n32              \"currency\": \"BRL\",\n33              \"value\": 10\n34            }\n35          }\n36        ]\n37      }\n38    ],\n39    \"createdAt\": \"2024-01-20T15:00:00.000Z\"\n40  }\n41}",
+      "context": ""
+    },
+    {
+      "language": "json",
+      "code": "1{\n2  \"id\": \"b07a59be974e47d192bd9e1951daea47\",\n3  \"event\": \"blinket.ticket_edited\",\n4  \"sentDate\": \"2024-01-20T15:00:00.000Z\",\n5  \"data\": {\n6    \"producer\": {\n7      \"id\": \"1234\",\n8      \"name\": \"João Silva\",\n9      \"email\": \"joaosilva@teste.com\"\n10    },\n11    \"event\": {\n12      \"id\": \"9b056848-beb0-44ff-9e76-d3ac131b6f50\",\n13      \"name\": \"Teste evento\",\n14      \"type\": \"online\"\n15    },\n16    \"tickets\": [\n17      {\n18        \"name\": \"Padrão\",\n19        \"showOnEventPage\": true,\n20        \"isPaid\": true,\n21        \"isUnlimited\": false,\n22        \"buyLimit\": 0,\n23        \"buyMinimum\": 0,\n24        \"batches\": [\n25          {\n26            \"contentId\": \"1733797\",\n27            \"name\": \"Lote 1\",\n28            \"quantity\": 100,\n29            \"startSalesAt\": \"2024-01-09T15:00:00.000Z\",\n30            \"endSalesAt\": \"2024-01-19T15:00:00.000Z\",\n31            \"price\": {\n32              \"currency\": \"BRL\",\n33              \"value\": 10\n34            }\n35          }\n36        ]\n37      }\n38    ],\n39    \"createdAt\": \"2024-01-20T15:00:00.000Z\"\n40  }\n41}",
+      "context": ""
+    }
+  ]
+}
