@@ -1,0 +1,32 @@
+{
+  "name": "eduzz-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Eduzz MCP Suite - Knowledge base, API client, and configuration management",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "clean": "npm run clean --workspaces"
+  },
+  "keywords": [
+    "eduzz",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  }
+}

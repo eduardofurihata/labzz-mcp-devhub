@@ -1,0 +1,53 @@
+{
+  "name": "@eduzz/mcp-knowledge",
+  "version": "1.0.0",
+  "description": "Eduzz knowledge base with semantic search",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "eduzz-knowledge": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "lint": "tsc --noEmit",
+    "serve": "node dist/cli.js serve",
+    "sync": "node dist/cli.js sync"
+  },
+  "keywords": [
+    "eduzz",
+    "mcp",
+    "knowledge-base",
+    "semantic-search",
+    "chromadb"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@eduzz/mcp-config": "^1.0.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "chromadb": "^1.7.0",
+    "node-cron": "^3.0.3",
+    "openai": "^4.20.0",
+    "playwright": "^1.40.0",
+    "turndown": "^7.1.2",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/node-cron": "^3.0.11",
+    "@types/turndown": "^5.0.4",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
