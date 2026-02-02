@@ -1,7 +1,6 @@
 {
   "name": "eduzz-mcp",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.0.1",
   "description": "Eduzz MCP Suite - Knowledge base, API client, and configuration management",
   "workspaces": [
     "packages/*"
