@@ -1,19 +1,11 @@
 #!/usr/bin/env node
 import { execFileSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const args = process.argv.slice(2);
 const command = args[0];
 
-const SERVERS = {
-  'eduzz-config': join(__dirname, 'packages/mcp-config/dist/cli.js'),
-  'eduzz-knowledge': join(__dirname, 'packages/mcp-knowledge/dist/cli.js'),
-  'eduzz-api': join(__dirname, 'packages/mcp-api/dist/cli.js'),
-};
+const REPO = 'github:eduardofurihata/labzz-mcp-devhub';
+const SERVERS = ['eduzz-config', 'eduzz-knowledge', 'eduzz-api'];
 
 function showHelp() {
   console.log(`
@@ -42,14 +34,14 @@ function setup(global = false) {
 
   console.log(`\n🚀 Instalando Eduzz MCP Suite${scopeLabel}...\n`);
 
-  for (const [name, path] of Object.entries(SERVERS)) {
+  for (const name of SERVERS) {
     try {
       console.log(`  ➜ Adicionando ${name}...`);
       const claudeArgs = ['mcp', 'add', name];
       if (global) {
         claudeArgs.push('-s', 'user');
       }
-      claudeArgs.push('--', 'node', path, 'serve');
+      claudeArgs.push('--', 'npx', '--yes', REPO, name, 'serve');
       execFileSync('claude', claudeArgs, { stdio: 'inherit' });
       console.log(`  ✓ ${name} adicionado com sucesso\n`);
     } catch (error) {
