@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eduardofurihata/eduzz-mcp-private.git",
+    "url": "git+https://github.com/eduardofurihata/labzz-mcp-devhub.git",
     "directory": "eduzz-mcp"
   },
   "workspaces": [

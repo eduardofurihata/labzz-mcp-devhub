@@ -30,7 +30,7 @@ npm install @eduardofurihata/eduzz-mcp
 ### Via Clone (desenvolvimento)
 
 ```bash
-git clone https://github.com/eduardofurihata/eduzz-mcp-private.git
+git clone https://github.com/eduardofurihata/labzz-mcp-devhub.git
 cd labzz-mcp-devhub/eduzz-mcp
 npm install
 npm run build
