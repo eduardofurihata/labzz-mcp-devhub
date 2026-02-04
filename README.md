@@ -1,49 +1,68 @@
 # Eduzz MCP Suite
 
-Suite completa de integração MCP (Model Context Protocol) para a plataforma Eduzz.
+Suite completa de servidores MCP (Model Context Protocol) para integração com a plataforma Eduzz.
 
-## Instalação Rápida
+Compatível com qualquer cliente MCP: Claude Code, Lovable, Kiro, Replit, Codex, etc.
 
-Um único comando para instalar todos os servidores MCP no Claude Code:
-
-```bash
-npx --yes github:eduardofurihata/labzz-mcp-devhub setup
-```
-
-Para instalar em escopo global (disponível em todos os projetos):
-
-```bash
-npx --yes github:eduardofurihata/labzz-mcp-devhub setup --global
-```
-
-## Atualização
-
-Para atualizar para a versão mais recente:
-
-```bash
-# 1. Limpar cache do npx
-rm -rf ~/.npm/_npx
-
-# 2. Remover servidores antigos
-claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
-
-# 3. Reinstalar
-npx github:eduardofurihata/labzz-mcp-devhub setup
-```
-
-## Desinstalação
-
-```bash
-claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
-```
-
-## Servidores Incluídos
+## Servidores Disponíveis
 
 | Servidor | Descrição |
 |----------|-----------|
 | `eduzz-config` | Gerenciamento de credenciais e perfis multi-tenant |
 | `eduzz-knowledge` | Base de conhecimento com busca semântica |
 | `eduzz-api` | Cliente da API Eduzz com ferramentas auto-geradas |
+
+## Instalação
+
+### Configuração Manual (qualquer cliente MCP)
+
+Adicione ao arquivo de configuração do seu cliente MCP (`.mcp.json`, `mcp.config.json`, etc):
+
+```json
+{
+  "mcpServers": {
+    "eduzz-config": {
+      "command": "npx",
+      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-config", "serve"]
+    },
+    "eduzz-knowledge": {
+      "command": "npx",
+      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-knowledge", "serve"]
+    },
+    "eduzz-api": {
+      "command": "npx",
+      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-api", "serve"]
+    }
+  }
+}
+```
+
+### Executando um servidor diretamente
+
+```bash
+npx github:eduardofurihata/labzz-mcp-devhub eduzz-config serve
+```
+
+### Setup automático (Claude Code)
+
+Se você usa Claude Code, pode instalar todos os servidores com um comando:
+
+```bash
+npx github:eduardofurihata/labzz-mcp-devhub setup
+```
+
+## Atualização
+
+```bash
+# 1. Limpar cache do npx
+rm -rf ~/.npm/_npx
+
+# 2. Reiniciar seu cliente MCP
+```
+
+## Desinstalação
+
+Remova as entradas do seu arquivo de configuração MCP.
 
 ## Ferramentas Disponíveis
 
@@ -74,21 +93,17 @@ claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mc
 ## Requisitos
 
 - Node.js >= 18.0.0
-- Claude Code CLI instalado
 
 ## Exemplo de Uso
 
 ```bash
-# 1. Instalar
-npx --yes github:eduardofurihata/labzz-mcp-devhub setup
-
-# 2. Reiniciar o Claude Code
-
-# 3. Configurar credenciais (no Claude Code)
+# 1. Configurar credenciais (via ferramenta MCP)
 eduzz_profile_create(name: "sandbox", api_key: "...", api_secret: "...")
 
-# 4. Usar as ferramentas
+# 2. Buscar na documentação
 eduzz_search(query: "como criar um produto")
+
+# 3. Chamar a API
 eduzz_api_call(endpoint: "/products", method: "GET")
 ```
 

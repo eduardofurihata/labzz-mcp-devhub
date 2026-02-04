@@ -1,11 +1,20 @@
 #!/usr/bin/env node
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const args = process.argv.slice(2);
 const command = args[0];
 
 const REPO = 'github:eduardofurihata/labzz-mcp-devhub';
-const SERVERS = ['eduzz-config', 'eduzz-knowledge', 'eduzz-api'];
+const SERVERS = {
+  'eduzz-config': join(__dirname, 'packages/mcp-config/dist/cli.js'),
+  'eduzz-knowledge': join(__dirname, 'packages/mcp-knowledge/dist/cli.js'),
+  'eduzz-api': join(__dirname, 'packages/mcp-api/dist/cli.js'),
+};
 
 function showHelp() {
   console.log(`
@@ -15,18 +24,42 @@ Uso:
   npx github:eduardofurihata/labzz-mcp-devhub <comando>
 
 Comandos:
-  setup             Adiciona todos os servidores MCP ao Claude Code
-  setup --global    Adiciona em escopo global (disponível em todos os projetos)
-  help              Mostra esta mensagem
+  eduzz-config <args>     Servidor MCP de configuração
+  eduzz-knowledge <args>  Servidor MCP de base de conhecimento
+  eduzz-api <args>        Servidor MCP da API
 
-Servidores incluídos:
-  - eduzz-config     Gerenciamento de credenciais e perfis
-  - eduzz-knowledge  Base de conhecimento com busca semântica
-  - eduzz-api        Cliente da API Eduzz
+  setup                   Instala todos os servidores no Claude Code
+  setup --global          Instala em escopo global
+  help                    Mostra esta mensagem
 
-Exemplo:
+Exemplo (iniciar servidor):
+  npx github:eduardofurihata/labzz-mcp-devhub eduzz-config serve
+
+Exemplo (setup Claude Code):
   npx github:eduardofurihata/labzz-mcp-devhub setup
 `);
+}
+
+function runServer(serverName, serverArgs) {
+  const serverPath = SERVERS[serverName];
+  if (!serverPath) {
+    console.error(`Servidor desconhecido: ${serverName}`);
+    process.exit(1);
+  }
+
+  // Spawn the server process, inheriting stdio for MCP communication
+  const child = spawn('node', [serverPath, ...serverArgs], {
+    stdio: 'inherit',
+  });
+
+  child.on('error', (err) => {
+    console.error(`Erro ao iniciar servidor: ${err.message}`);
+    process.exit(1);
+  });
+
+  child.on('exit', (code) => {
+    process.exit(code || 0);
+  });
 }
 
 function setup(global = false) {
@@ -34,7 +67,7 @@ function setup(global = false) {
 
   console.log(`\n🚀 Instalando Eduzz MCP Suite${scopeLabel}...\n`);
 
-  for (const name of SERVERS) {
+  for (const name of Object.keys(SERVERS)) {
     try {
       console.log(`  ➜ Adicionando ${name}...`);
       const claudeArgs = ['mcp', 'add', name];
@@ -53,6 +86,12 @@ function setup(global = false) {
 }
 
 function main() {
+  // Check if command is a server name
+  if (SERVERS[command]) {
+    runServer(command, args.slice(1));
+    return;
+  }
+
   switch (command) {
     case 'setup':
       const isGlobal = args.includes('--global') || args.includes('-g');
