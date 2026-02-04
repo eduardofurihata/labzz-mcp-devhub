@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish to GitHub Packages
 
 on:
   push:
@@ -10,6 +10,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     defaults:
       run:
         working-directory: eduzz-mcp
@@ -21,7 +24,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@eduardofurihata'
 
       - name: Install dependencies
         run: npm ci
@@ -33,17 +37,19 @@ jobs:
         id: version
         run: |
           PACKAGE_VERSION=$(node -p "require('./package.json').version")
-          NPM_VERSION=$(npm view eduzz-mcp version 2>/dev/null || echo "0.0.0")
-          if [ "$PACKAGE_VERSION" != "$NPM_VERSION" ]; then
+          PUBLISHED_VERSION=$(npm view @eduardofurihata/eduzz-mcp version 2>/dev/null || echo "0.0.0")
+          if [ "$PACKAGE_VERSION" != "$PUBLISHED_VERSION" ]; then
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "Version changed: $NPM_VERSION -> $PACKAGE_VERSION"
+            echo "Version changed: $PUBLISHED_VERSION -> $PACKAGE_VERSION"
           else
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "Version unchanged: $PACKAGE_VERSION"
           fi
-
-      - name: Publish to npm
-        if: steps.version.outputs.changed == 'true'
-        run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to GitHub Packages
+        if: steps.version.outputs.changed == 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

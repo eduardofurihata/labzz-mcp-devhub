@@ -6,12 +6,31 @@ Suite completa de integração MCP (Model Context Protocol) para a plataforma Ed
 - **@eduzz/mcp-knowledge** - Base de conhecimento com busca semântica
 - **@eduzz/mcp-api** - Cliente da API com ferramentas auto-geradas
 
-## Quick Start
+## Instalação
 
-### 1. Clonar e Instalar
+### Via GitHub Packages (recomendado)
+
+Este pacote é privado e disponível via GitHub Packages. Para instalar:
+
+1. Crie um Personal Access Token no GitHub com permissão `read:packages`
+2. Configure o npm para usar o registry do GitHub:
 
 ```bash
-git clone https://github.com/seu-usuario/labzz-mcp-devhub.git
+# Adicione ao seu ~/.npmrc
+@eduardofurihata:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=SEU_GITHUB_TOKEN
+```
+
+3. Instale o pacote:
+
+```bash
+npm install @eduardofurihata/eduzz-mcp
+```
+
+### Via Clone (desenvolvimento)
+
+```bash
+git clone https://github.com/eduardofurihata/eduzz-mcp-private.git
 cd labzz-mcp-devhub/eduzz-mcp
 npm install
 npm run build

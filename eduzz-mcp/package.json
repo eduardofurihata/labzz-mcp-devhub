@@ -1,7 +1,17 @@
 {
-  "name": "eduzz-mcp",
-  "version": "1.0.2",
+  "name": "@eduardofurihata/eduzz-mcp",
+  "version": "1.0.3",
   "description": "Eduzz MCP Suite - Knowledge base, API client, and configuration management",
+  "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardofurihata/eduzz-mcp-private.git",
+    "directory": "eduzz-mcp"
+  },
   "workspaces": [
     "packages/*"
   ],
