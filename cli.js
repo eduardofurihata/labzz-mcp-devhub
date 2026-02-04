@@ -20,7 +20,7 @@ function showHelp() {
 Eduzz MCP Suite - Ferramentas MCP para integração com a plataforma Eduzz
 
 Uso:
-  npx --yes github:eduardofurihata/labzz-mcp-devhub <comando>
+  npx github:eduardofurihata/labzz-mcp-devhub <comando>
 
 Comandos:
   setup             Adiciona todos os servidores MCP ao Claude Code
@@ -33,7 +33,7 @@ Servidores incluídos:
   - eduzz-api        Cliente da API Eduzz
 
 Exemplo:
-  npx --yes github:eduardofurihata/labzz-mcp-devhub setup
+  npx github:eduardofurihata/labzz-mcp-devhub setup
 `);
 }
 
