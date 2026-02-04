@@ -27,5 +27,4 @@ npm-debug.log*
 # MCP config (user-specific)
 .mcp.json
 
-# Package manager
-package-lock.json
+# Package manager (keep package-lock.json for CI)
