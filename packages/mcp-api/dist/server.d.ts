@@ -1,5 +1,5 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { ConfigManager } from '@eduzz/mcp-config';
+import { ConfigManager } from '../../mcp-config/dist/index.js';
 export interface APIServerConfig {
     configManager?: ConfigManager;
 }

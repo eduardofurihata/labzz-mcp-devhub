@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { existsSync, readFileSync } from 'node:fs';
-import { ConfigManager } from '@eduzz/mcp-config';
+import { ConfigManager } from '../../mcp-config/dist/index.js';
 import { EduzzAPIClient } from './client.js';
 import { ToolGenerator } from './generator.js';
 export function createAPIServer(config = {}) {
