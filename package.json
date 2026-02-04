@@ -1,6 +1,6 @@
 {
   "name": "@eduardofurihata/labzz-mcp-devhub",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Eduzz MCP Suite - Knowledge base, API client, and configuration management",
   "private": false,
   "type": "module",

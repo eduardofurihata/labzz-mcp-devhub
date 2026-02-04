@@ -1,8 +1,7 @@
 # Dependencies
 node_modules/
 
-# Build output
-dist/
+# Build output (keep dist/ for npx github: compatibility)
 *.tsbuildinfo
 
 # IDE
