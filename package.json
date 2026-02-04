@@ -1,0 +1,36 @@
+{
+  "name": "@eduardofurihata/eduzz-mcp",
+  "version": "1.0.5",
+  "description": "Eduzz MCP Suite - Knowledge base, API client, and configuration management",
+  "private": false,
+  "type": "module",
+  "bin": {
+    "eduzz-mcp": "./cli.js",
+    "eduzz-config": "./eduzz-mcp/packages/mcp-config/dist/cli.js",
+    "eduzz-knowledge": "./eduzz-mcp/packages/mcp-knowledge/dist/cli.js",
+    "eduzz-api": "./eduzz-mcp/packages/mcp-api/dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardofurihata/labzz-mcp-devhub.git"
+  },
+  "files": [
+    "cli.js",
+    "eduzz-mcp/packages/*/dist/**",
+    "eduzz-mcp/packages/*/package.json",
+    "eduzz-mcp/packages/mcp-knowledge/data/**"
+  ],
+  "keywords": [
+    "eduzz",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "api",
+    "claude"
+  ],
+  "author": "Eduardo Furihata",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
