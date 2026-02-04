@@ -38,6 +38,31 @@ npm run build
 
 ### 2. Configurar no Claude Code
 
+#### Via `claude mcp add` (recomendado)
+
+Após instalar o pacote, adicione os servidores MCP usando o CLI do Claude Code:
+
+```bash
+# Adicionar servidor de configuração de perfis
+claude mcp add eduzz-config -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve
+
+# Adicionar servidor de base de conhecimento
+claude mcp add eduzz-knowledge -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve
+
+# Adicionar servidor de API
+claude mcp add eduzz-api -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js serve
+```
+
+Para adicionar em escopo global (disponível em todos os projetos):
+
+```bash
+claude mcp add eduzz-config -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve
+claude mcp add eduzz-knowledge -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve
+claude mcp add eduzz-api -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js serve
+```
+
+#### Via `.mcp.json` (alternativa)
+
 Copie o arquivo `.mcp.json` para a raiz do seu projeto:
 
 ```json
@@ -45,15 +70,15 @@ Copie o arquivo `.mcp.json` para a raiz do seu projeto:
   "mcpServers": {
     "eduzz-config": {
       "command": "node",
-      "args": ["./eduzz-mcp/packages/mcp-config/dist/cli.js", "serve"]
+      "args": ["./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js", "serve"]
     },
     "eduzz-knowledge": {
       "command": "node",
-      "args": ["./eduzz-mcp/packages/mcp-knowledge/dist/cli.js", "serve"]
+      "args": ["./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js", "serve"]
     },
     "eduzz-api": {
       "command": "node",
-      "args": ["./eduzz-mcp/packages/mcp-api/dist/cli.js", "serve"]
+      "args": ["./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js", "serve"]
     }
   }
 }
@@ -121,6 +146,20 @@ packages/mcp-knowledge/data/
 ```
 
 ## Para Desenvolvedores
+
+### CI/CD - Auto Deploy
+
+Este repositório possui deploy automático para GitHub Packages configurado:
+
+- **Trigger**: Push na branch `main` com mudanças em `eduzz-mcp/**`
+- **Condição**: Publica apenas se a versão no `package.json` for diferente da versão publicada
+- **Manual**: Também pode ser disparado manualmente via GitHub Actions (workflow_dispatch)
+
+Para publicar uma nova versão:
+
+1. Atualize a versão no `package.json`
+2. Faça commit e push para `main`
+3. O workflow irá buildar e publicar automaticamente
 
 ### Atualizar a Base de Conhecimento
 
