@@ -40,24 +40,19 @@ npm run build
 
 #### Via `claude mcp add` (recomendado)
 
-Após instalar o pacote, adicione os servidores MCP usando o CLI do Claude Code:
+Após instalar o pacote, adicione todos os servidores MCP de uma vez:
 
 ```bash
-# Adicionar servidor de configuração de perfis
-claude mcp add eduzz-config -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve
-
-# Adicionar servidor de base de conhecimento
-claude mcp add eduzz-knowledge -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve
-
-# Adicionar servidor de API
+claude mcp add eduzz-config -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve && \
+claude mcp add eduzz-knowledge -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve && \
 claude mcp add eduzz-api -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js serve
 ```
 
-Para adicionar em escopo global (disponível em todos os projetos):
+Para escopo global (disponível em todos os projetos), adicione `-s user`:
 
 ```bash
-claude mcp add eduzz-config -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve
-claude mcp add eduzz-knowledge -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve
+claude mcp add eduzz-config -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve && \
+claude mcp add eduzz-knowledge -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve && \
 claude mcp add eduzz-api -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js serve
 ```
 
