@@ -67,14 +67,27 @@ Você deve ver os três servidores listados:
 - `eduzz-knowledge`
 - `eduzz-api`
 
+## Atualizando
+
+Para atualizar para a versão mais recente:
+
+```bash
+# 1. Limpar cache do npx
+rm -rf ~/.npm/_npx
+
+# 2. Remover servidores antigos
+claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
+
+# 3. Reinstalar
+npx github:eduardofurihata/labzz-mcp-devhub setup
+```
+
 ## Removendo
 
 Para remover os servidores:
 
 ```bash
-claude mcp remove eduzz-config
-claude mcp remove eduzz-knowledge
-claude mcp remove eduzz-api
+claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
 ```
 
 ## Troubleshooting

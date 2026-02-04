@@ -16,6 +16,27 @@ Para instalar em escopo global (disponível em todos os projetos):
 npx --yes github:eduardofurihata/labzz-mcp-devhub setup --global
 ```
 
+## Atualização
+
+Para atualizar para a versão mais recente:
+
+```bash
+# 1. Limpar cache do npx
+rm -rf ~/.npm/_npx
+
+# 2. Remover servidores antigos
+claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
+
+# 3. Reinstalar
+npx github:eduardofurihata/labzz-mcp-devhub setup
+```
+
+## Desinstalação
+
+```bash
+claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
+```
+
 ## Servidores Incluídos
 
 | Servidor | Descrição |
