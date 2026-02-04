@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'eduzz-mcp/**'
+      - 'packages/**'
       - 'package.json'
       - 'cli.js'
   workflow_dispatch:
@@ -27,12 +27,13 @@ jobs:
           scope: '@eduardofurihata'
 
       - name: Install dependencies
-        working-directory: eduzz-mcp
         run: npm ci
 
       - name: Build
-        working-directory: eduzz-mcp
         run: npm run build
+
+      - name: Run tests
+        run: npm test
 
       - name: Check if version changed
         id: version

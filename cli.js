@@ -10,9 +10,9 @@ const args = process.argv.slice(2);
 const command = args[0];
 
 const SERVERS = {
-  'eduzz-config': join(__dirname, 'eduzz-mcp/packages/mcp-config/dist/cli.js'),
-  'eduzz-knowledge': join(__dirname, 'eduzz-mcp/packages/mcp-knowledge/dist/cli.js'),
-  'eduzz-api': join(__dirname, 'eduzz-mcp/packages/mcp-api/dist/cli.js'),
+  'eduzz-config': join(__dirname, 'packages/mcp-config/dist/cli.js'),
+  'eduzz-knowledge': join(__dirname, 'packages/mcp-knowledge/dist/cli.js'),
+  'eduzz-api': join(__dirname, 'packages/mcp-api/dist/cli.js'),
 };
 
 function showHelp() {
