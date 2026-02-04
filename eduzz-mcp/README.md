@@ -40,40 +40,40 @@ npm run build
 
 #### Via `claude mcp add` (recomendado)
 
-Após instalar o pacote, adicione todos os servidores MCP de uma vez:
+Após configurar o npm (passo 1 e 2), adicione todos os servidores MCP de uma vez:
 
 ```bash
-claude mcp add eduzz-config -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve && \
-claude mcp add eduzz-knowledge -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve && \
-claude mcp add eduzz-api -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js serve
+claude mcp add eduzz-config -- npx @eduardofurihata/eduzz-mcp eduzz-config serve && \
+claude mcp add eduzz-knowledge -- npx @eduardofurihata/eduzz-mcp eduzz-knowledge serve && \
+claude mcp add eduzz-api -- npx @eduardofurihata/eduzz-mcp eduzz-api serve
 ```
 
 Para escopo global (disponível em todos os projetos), adicione `-s user`:
 
 ```bash
-claude mcp add eduzz-config -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js serve && \
-claude mcp add eduzz-knowledge -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js serve && \
-claude mcp add eduzz-api -s user -- node ./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js serve
+claude mcp add eduzz-config -s user -- npx @eduardofurihata/eduzz-mcp eduzz-config serve && \
+claude mcp add eduzz-knowledge -s user -- npx @eduardofurihata/eduzz-mcp eduzz-knowledge serve && \
+claude mcp add eduzz-api -s user -- npx @eduardofurihata/eduzz-mcp eduzz-api serve
 ```
 
 #### Via `.mcp.json` (alternativa)
 
-Copie o arquivo `.mcp.json` para a raiz do seu projeto:
+Crie um arquivo `.mcp.json` na raiz do seu projeto:
 
 ```json
 {
   "mcpServers": {
     "eduzz-config": {
-      "command": "node",
-      "args": ["./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-config/dist/cli.js", "serve"]
+      "command": "npx",
+      "args": ["@eduardofurihata/eduzz-mcp", "eduzz-config", "serve"]
     },
     "eduzz-knowledge": {
-      "command": "node",
-      "args": ["./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-knowledge/dist/cli.js", "serve"]
+      "command": "npx",
+      "args": ["@eduardofurihata/eduzz-mcp", "eduzz-knowledge", "serve"]
     },
     "eduzz-api": {
-      "command": "node",
-      "args": ["./node_modules/@eduardofurihata/eduzz-mcp/packages/mcp-api/dist/cli.js", "serve"]
+      "command": "npx",
+      "args": ["@eduardofurihata/eduzz-mcp", "eduzz-api", "serve"]
     }
   }
 }
