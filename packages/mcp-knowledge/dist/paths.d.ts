@@ -2,8 +2,9 @@
  * Resolve o diretório de dados da knowledge base.
  *
  * Prioridade:
- * 1. Pasta 'data' no diretório do pacote mcp-knowledge (para uso em projeto)
- * 2. ~/.eduzz-mcp (fallback para uso standalone)
+ * 1. Pasta 'data' no diretório do pacote mcp-knowledge (para uso em projeto local)
+ * 2. Pasta 'packages/mcp-knowledge/data' relativa ao root (para bundle via npx)
+ * 3. ~/.eduzz-mcp (fallback para uso standalone)
  */
 export declare function getDataDir(): string;
 /**

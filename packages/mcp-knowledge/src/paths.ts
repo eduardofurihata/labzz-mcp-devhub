@@ -10,8 +10,9 @@ const __dirname = dirname(__filename);
  * Resolve o diretório de dados da knowledge base.
  *
  * Prioridade:
- * 1. Pasta 'data' no diretório do pacote mcp-knowledge (para uso em projeto)
- * 2. ~/.eduzz-mcp (fallback para uso standalone)
+ * 1. Pasta 'data' no diretório do pacote mcp-knowledge (para uso em projeto local)
+ * 2. Pasta 'packages/mcp-knowledge/data' relativa ao root (para bundle via npx)
+ * 3. ~/.eduzz-mcp (fallback para uso standalone)
  */
 export function getDataDir(): string {
   // Caminho relativo ao pacote: packages/mcp-knowledge/data
@@ -20,6 +21,13 @@ export function getDataDir(): string {
 
   if (existsSync(projectDataDir)) {
     return projectDataDir;
+  }
+
+  // Para bundle: __dirname é dist/, data está em packages/mcp-knowledge/data
+  const bundledDataDir = join(__dirname, '..', 'packages', 'mcp-knowledge', 'data');
+
+  if (existsSync(bundledDataDir)) {
+    return bundledDataDir;
   }
 
   // Fallback para home do usuário
