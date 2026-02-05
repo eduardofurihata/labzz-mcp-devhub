@@ -1,16 +1,8 @@
-# Eduzz MCP Suite
+# Eduzz MCP DevHub
 
-Suite completa de servidores MCP (Model Context Protocol) para integração com a plataforma Eduzz.
+Servidor MCP (Model Context Protocol) unificado para integração com a plataforma Eduzz.
 
 Compatível com qualquer cliente MCP: Claude Code, Lovable, Kiro, Replit, Codex, etc.
-
-## Servidores Disponíveis
-
-| Servidor | Descrição |
-|----------|-----------|
-| `eduzz-config` | Gerenciamento de credenciais e perfis multi-tenant |
-| `eduzz-knowledge` | Base de conhecimento com busca semântica |
-| `eduzz-api` | Cliente da API Eduzz com ferramentas auto-geradas |
 
 ## Instalação
 
@@ -21,31 +13,15 @@ Adicione ao arquivo de configuração do seu cliente MCP (`.mcp.json`, `mcp.conf
 ```json
 {
   "mcpServers": {
-    "eduzz-config": {
+    "eduzz-devhub": {
       "command": "npx",
-      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-config", "serve"]
-    },
-    "eduzz-knowledge": {
-      "command": "npx",
-      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-knowledge", "serve"]
-    },
-    "eduzz-api": {
-      "command": "npx",
-      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-api", "serve"]
+      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "serve"]
     }
   }
 }
 ```
 
-### Executando um servidor diretamente
-
-```bash
-npx github:eduardofurihata/labzz-mcp-devhub eduzz-config serve
-```
-
 ### Setup automático (Claude Code)
-
-Se você usa Claude Code, pode instalar todos os servidores com um comando:
 
 ```bash
 npx github:eduardofurihata/labzz-mcp-devhub setup
@@ -62,26 +38,49 @@ rm -rf ~/.npm/_npx
 
 ## Desinstalação
 
-Remova as entradas do seu arquivo de configuração MCP.
+Remova a entrada `eduzz-devhub` do seu arquivo de configuração MCP.
 
 ## Ferramentas Disponíveis
 
-### Configuração (`eduzz-config`)
+### Configuração
 - `eduzz_profile_list` - Listar perfis
 - `eduzz_profile_switch` - Trocar perfil ativo
 - `eduzz_profile_create` - Criar novo perfil
 - `eduzz_profile_delete` - Deletar perfil
 - `eduzz_profile_active` - Info do perfil ativo
 
-### Base de Conhecimento (`eduzz-knowledge`)
+### Base de Conhecimento
 - `eduzz_search` - Busca semântica na documentação
 - `eduzz_get_example` - Exemplos de código por tópico
 - `eduzz_get_endpoint` - Documentação de endpoints da API
+- `eduzz_sync` - Sincronizar a base de conhecimento
+- `eduzz_stats` - Estatísticas da base de conhecimento
 
-### API (`eduzz-api`)
+### API
 - `eduzz_api_call` - Chamada genérica à API
 - `eduzz_api_endpoints` - Listar endpoints disponíveis
 - `eduzz_api_status` - Status atual da API
+- `eduzz_api_reload` - Recarregar ferramentas da OpenAPI spec
+- Ferramentas dinâmicas geradas a partir da OpenAPI spec
+
+### Resources
+- `eduzz://docs/overview` - Visão geral da documentação
+- `eduzz://openapi/spec.json` - OpenAPI spec completa
+
+## CLI
+
+```bash
+labzz-mcp-devhub serve                  # Iniciar o servidor MCP
+labzz-mcp-devhub setup [--global]       # Registrar no Claude Code
+labzz-mcp-devhub sync                   # Sincronizar a knowledge base
+
+labzz-mcp-devhub config create          # Wizard interativo de configuração
+labzz-mcp-devhub config list            # Listar perfis
+labzz-mcp-devhub config switch <name>   # Trocar perfil ativo
+labzz-mcp-devhub config delete <name>   # Deletar perfil
+
+labzz-mcp-devhub help                   # Ajuda
+```
 
 ## Documentação
 
@@ -111,12 +110,13 @@ eduzz_api_call(endpoint: "/products", method: "GET")
 
 ```
 labzz-mcp-devhub/
+├── src/                  # Servidor unificado + CLI
 ├── packages/
 │   ├── mcp-api/          # Cliente da API
 │   ├── mcp-config/       # Gerenciamento de perfis
 │   └── mcp-knowledge/    # Base de conhecimento
 ├── docs/                 # Documentação
-├── cli.js                # CLI principal
+├── cli.js                # Entrypoint (thin wrapper)
 └── package.json
 ```
 

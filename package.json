@@ -1,14 +1,13 @@
 {
   "name": "@eduardofurihata/labzz-mcp-devhub",
-  "version": "1.0.6",
-  "description": "Eduzz MCP Suite - Knowledge base, API client, and configuration management",
+  "version": "2.0.0",
+  "description": "Eduzz MCP DevHub - Unified MCP server with knowledge base, API client, and configuration management",
   "private": false,
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
-    "labzz-mcp-devhub": "./cli.js",
-    "eduzz-config": "./packages/mcp-config/dist/cli.js",
-    "eduzz-knowledge": "./packages/mcp-knowledge/dist/cli.js",
-    "eduzz-api": "./packages/mcp-api/dist/cli.js"
+    "labzz-mcp-devhub": "./cli.js"
   },
   "repository": {
     "type": "git",
@@ -18,15 +17,17 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build --workspaces && npm run build:root",
+    "build:root": "tsc -p tsconfig.build.json",
     "test": "npm run test --workspaces",
     "lint": "npm run lint --workspaces",
-    "clean": "npm run clean --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf dist",
     "sync": "npm run sync -w @eduzz/mcp-knowledge",
     "prepublishOnly": "npm run build"
   },
   "files": [
     "cli.js",
+    "dist/**",
     "packages/*/dist/**",
     "packages/*/package.json",
     "packages/mcp-knowledge/data/**"

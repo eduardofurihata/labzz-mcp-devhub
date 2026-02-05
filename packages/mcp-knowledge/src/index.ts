@@ -1,4 +1,4 @@
-export { createKnowledgeServer, startServer, type KnowledgeServerConfig } from './server.js';
+export { registerKnowledgeTools, setupKnowledgeCron, createKnowledgeServer, startServer, type KnowledgeServerConfig } from './server.js';
 export { KnowledgeSyncer, type SyncOptions, type SyncResult } from './sync.js';
 export { Crawler } from './scraper/index.js';
 export {

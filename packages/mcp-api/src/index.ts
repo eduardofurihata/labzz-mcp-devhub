@@ -1,4 +1,4 @@
-export { createAPIServer, startServer, type APIServerConfig } from './server.js';
+export { registerAPITools, createAPIServer, startServer, type APIServerConfig } from './server.js';
 export { EduzzAPIClient } from './client.js';
 export { ToolGenerator } from './generator.js';
 export {

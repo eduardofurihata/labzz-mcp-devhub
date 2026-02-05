@@ -4,14 +4,7 @@ import { z } from 'zod';
 import { ConfigManager } from './config-manager.js';
 import { EnvironmentSchema } from './types.js';
 
-export function createConfigServer(): McpServer {
-  const server = new McpServer({
-    name: 'eduzz-config',
-    version: '1.0.0',
-  });
-
-  const configManager = new ConfigManager();
-
+export function registerConfigTools(server: McpServer, configManager: ConfigManager): void {
   // Tool: List profiles
   server.tool(
     'eduzz_profile_list',
@@ -182,6 +175,14 @@ export function createConfigServer(): McpServer {
     }
   );
 
+}
+
+export function createConfigServer(): McpServer {
+  const server = new McpServer({
+    name: 'eduzz-config',
+    version: '1.0.0',
+  });
+  registerConfigTools(server, new ConfigManager());
   return server;
 }
 

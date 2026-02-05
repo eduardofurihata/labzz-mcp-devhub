@@ -15,28 +15,13 @@ export interface KnowledgeServerConfig {
   cronSchedule?: string; // Default: '0 3 * * 0' (Sunday 3am)
 }
 
-export function createKnowledgeServer(config: KnowledgeServerConfig = {}): McpServer {
-  const server = new McpServer({
-    name: 'eduzz-knowledge',
-    version: '1.0.0',
-  });
-
+export function registerKnowledgeTools(server: McpServer, config: KnowledgeServerConfig = {}): void {
   const baseDir = getDataDir();
   const embeddings = new LocalEmbeddings({
     storagePath: baseDir,
   });
   const openApiProcessor = new OpenAPIProcessor(baseDir);
   const syncer = new KnowledgeSyncer();
-
-  // Schedule automatic sync
-  const schedule = config.cronSchedule || '0 3 * * 0';
-  cron.schedule(schedule, async () => {
-    console.log('Running scheduled knowledge sync...');
-    await syncer.sync({
-      openaiApiKey: config.openaiApiKey,
-      anthropicApiKey: config.anthropicApiKey,
-    });
-  });
 
   // Tool: Semantic search
   server.tool(
@@ -404,6 +389,27 @@ ${result.errors.length > 0 ? `\nErrors:\n${result.errors.join('\n')}` : ''}`;
     }
   );
 
+}
+
+export function setupKnowledgeCron(config: KnowledgeServerConfig = {}): void {
+  const syncer = new KnowledgeSyncer();
+  const schedule = config.cronSchedule || '0 3 * * 0';
+  cron.schedule(schedule, async () => {
+    console.log('Running scheduled knowledge sync...');
+    await syncer.sync({
+      openaiApiKey: config.openaiApiKey,
+      anthropicApiKey: config.anthropicApiKey,
+    });
+  });
+}
+
+export function createKnowledgeServer(config: KnowledgeServerConfig = {}): McpServer {
+  const server = new McpServer({
+    name: 'eduzz-knowledge',
+    version: '1.0.0',
+  });
+  registerKnowledgeTools(server, config);
+  setupKnowledgeCron(config);
   return server;
 }
 

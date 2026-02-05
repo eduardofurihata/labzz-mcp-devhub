@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { existsSync, readFileSync } from 'node:fs';
-import { ConfigManager } from '../../mcp-config/dist/index.js';
+import { ConfigManager } from '@eduzz/mcp-config';
 import { EduzzAPIClient } from './client.js';
 import { ToolGenerator } from './generator.js';
 import { APIClientConfig } from './types.js';
@@ -13,12 +13,7 @@ export interface APIServerConfig {
   configManager?: ConfigManager;
 }
 
-export function createAPIServer(config: APIServerConfig = {}): McpServer {
-  const server = new McpServer({
-    name: 'eduzz-api',
-    version: '1.0.0',
-  });
-
+export function registerAPITools(server: McpServer, config: APIServerConfig = {}): void {
   const configManager = config.configManager || new ConfigManager();
   let currentClient: EduzzAPIClient | null = null;
   let generatedTools: Map<string, ReturnType<ToolGenerator['generateTools']>[number]> = new Map();
@@ -298,6 +293,14 @@ export function createAPIServer(config: APIServerConfig = {}): McpServer {
     );
   }
 
+}
+
+export function createAPIServer(config: APIServerConfig = {}): McpServer {
+  const server = new McpServer({
+    name: 'eduzz-api',
+    version: '1.0.0',
+  });
+  registerAPITools(server, config);
   return server;
 }
 

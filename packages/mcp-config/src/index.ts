@@ -1,5 +1,5 @@
 export { ConfigManager } from './config-manager.js';
-export { createConfigServer, startServer } from './server.js';
+export { registerConfigTools, createConfigServer, startServer } from './server.js';
 export {
   Config,
   ConfigSchema,
