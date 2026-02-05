@@ -2,7 +2,7 @@
 
 ## Método Rápido (Recomendado)
 
-Um único comando para instalar todos os servidores MCP:
+Um único comando para instalar o servidor MCP:
 
 ```bash
 npx --yes github:eduardofurihata/labzz-mcp-devhub setup
@@ -18,17 +18,10 @@ npx --yes github:eduardofurihata/labzz-mcp-devhub setup --global
 
 ## Método Manual
 
-Se preferir instalar cada servidor individualmente:
+Se preferir instalar manualmente:
 
 ```bash
-# Configuração de perfis
-claude mcp add eduzz-config -- npx --yes github:eduardofurihata/labzz-mcp-devhub eduzz-config serve
-
-# Base de conhecimento
-claude mcp add eduzz-knowledge -- npx --yes github:eduardofurihata/labzz-mcp-devhub eduzz-knowledge serve
-
-# Cliente da API
-claude mcp add eduzz-api -- npx --yes github:eduardofurihata/labzz-mcp-devhub eduzz-api serve
+claude mcp add eduzz-devhub -- npx --yes github:eduardofurihata/labzz-mcp-devhub serve
 ```
 
 ## Via .mcp.json
@@ -38,17 +31,9 @@ Crie um arquivo `.mcp.json` na raiz do seu projeto:
 ```json
 {
   "mcpServers": {
-    "eduzz-config": {
+    "eduzz-devhub": {
       "command": "npx",
-      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-config", "serve"]
-    },
-    "eduzz-knowledge": {
-      "command": "npx",
-      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-knowledge", "serve"]
-    },
-    "eduzz-api": {
-      "command": "npx",
-      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "eduzz-api", "serve"]
+      "args": ["--yes", "github:eduardofurihata/labzz-mcp-devhub", "serve"]
     }
   }
 }
@@ -62,10 +47,7 @@ Após instalar, reinicie o Claude Code e verifique:
 claude mcp list
 ```
 
-Você deve ver os três servidores listados:
-- `eduzz-config`
-- `eduzz-knowledge`
-- `eduzz-api`
+Você deve ver o servidor `eduzz-devhub` listado.
 
 ## Atualizando
 
@@ -75,8 +57,8 @@ Para atualizar para a versão mais recente:
 # 1. Limpar cache do npx
 rm -rf ~/.npm/_npx
 
-# 2. Remover servidores antigos
-claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
+# 2. Remover servidor antigo
+claude mcp remove eduzz-devhub
 
 # 3. Reinstalar
 npx github:eduardofurihata/labzz-mcp-devhub setup
@@ -84,10 +66,10 @@ npx github:eduardofurihata/labzz-mcp-devhub setup
 
 ## Removendo
 
-Para remover os servidores:
+Para remover o servidor:
 
 ```bash
-claude mcp remove eduzz-config && claude mcp remove eduzz-knowledge && claude mcp remove eduzz-api
+claude mcp remove eduzz-devhub
 ```
 
 ## Troubleshooting
@@ -105,6 +87,6 @@ Instale o Claude Code CLI:
 npm install -g @anthropic-ai/claude-code
 ```
 
-### Servidores não aparecem após instalação
+### Servidor não aparece após instalação
 
 Reinicie completamente o Claude Code (feche e abra novamente).

@@ -2,7 +2,7 @@
 
 ## Perfis de Acesso
 
-O Eduzz MCP suporta múltiplos perfis para diferentes ambientes (sandbox, produção) e contas.
+O Eduzz MCP DevHub suporta múltiplos perfis para diferentes ambientes (sandbox, produção) e contas.
 
 ### Criando um Perfil
 
@@ -15,6 +15,12 @@ eduzz_profile_create(
   api_secret: "seu-api-secret",
   environment: "sandbox"  // ou "production"
 )
+```
+
+Ou via CLI:
+
+```bash
+labzz-mcp-devhub config create
 ```
 
 ### Listando Perfis
@@ -52,44 +58,40 @@ eduzz_profile_delete(name: "perfil-antigo")
 
 ## Armazenamento de Credenciais
 
-As credenciais são armazenadas de forma segura em:
-
-- **Linux/macOS**: `~/.config/eduzz-mcp/`
-- **Windows**: `%APPDATA%/eduzz-mcp/`
-
-### Estrutura de Arquivos
+As credenciais são armazenadas em:
 
 ```
-~/.config/eduzz-mcp/
-├── config.json      # Configuração geral (perfil ativo)
-└── profiles/
-    ├── sandbox.json
-    └── production.json
+~/.eduzz-mcp/
+└── config.json      # Perfis e configuração geral
 ```
 
-### Formato do Perfil
+### Formato do Config
 
 ```json
 {
-  "name": "sandbox",
-  "apiKey": "...",
-  "apiSecret": "...",
-  "environment": "sandbox",
-  "createdAt": "2024-01-01T00:00:00.000Z"
+  "active_profile": "sandbox",
+  "profiles": {
+    "sandbox": {
+      "api_key": "...",
+      "api_secret": "...",
+      "environment": "sandbox"
+    }
+  }
 }
 ```
 
 ## Variáveis de Ambiente
 
-Você também pode configurar via variáveis de ambiente:
+Variáveis de ambiente opcionais:
 
 ```bash
-export EDUZZ_API_KEY="sua-api-key"
-export EDUZZ_API_SECRET="seu-api-secret"
-export EDUZZ_ENVIRONMENT="sandbox"
-```
+# Para descrições AI de imagens durante o sync
+export OPENAI_API_KEY="sua-openai-key"
+export ANTHROPIC_API_KEY="sua-anthropic-key"
 
-As variáveis de ambiente têm prioridade sobre os perfis salvos.
+# Schedule customizado para auto-sync (padrão: domingo 3am)
+export EDUZZ_SYNC_SCHEDULE="0 3 * * 0"
+```
 
 ## Múltiplas Contas
 

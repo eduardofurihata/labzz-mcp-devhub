@@ -4,6 +4,12 @@ node_modules/
 # Build output (keep dist/ for npx github: compatibility)
 *.tsbuildinfo
 
+# Compiled JS/declarations in source dirs (should only be in dist/)
+packages/*/src/**/*.js
+packages/*/src/**/*.js.map
+packages/*/src/**/*.d.ts
+packages/*/src/**/*.d.ts.map
+
 # IDE
 .idea/
 .vscode/

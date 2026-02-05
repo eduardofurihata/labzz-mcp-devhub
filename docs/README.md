@@ -1,6 +1,6 @@
-# Eduzz MCP Suite - Documentação
+# Eduzz MCP DevHub - Documentação
 
-Suite completa de integração MCP (Model Context Protocol) para a plataforma Eduzz.
+Servidor MCP (Model Context Protocol) unificado para integração com a plataforma Eduzz.
 
 ## Índice
 
@@ -11,42 +11,44 @@ Suite completa de integração MCP (Model Context Protocol) para a plataforma Ed
 
 ## Visão Geral
 
-O Eduzz MCP Suite é composto por três servidores MCP que trabalham juntos:
+O Eduzz MCP DevHub é um servidor MCP unificado que expõe todas as ferramentas em um único processo:
 
-| Servidor | Descrição |
-|----------|-----------|
-| `eduzz-config` | Gerenciamento de credenciais e perfis multi-tenant |
-| `eduzz-knowledge` | Base de conhecimento com busca semântica |
-| `eduzz-api` | Cliente da API Eduzz com ferramentas auto-geradas |
+| Módulo | Ferramentas |
+|--------|-------------|
+| Configuração | Gerenciamento de credenciais e perfis multi-tenant |
+| Knowledge | Base de conhecimento com busca semântica |
+| API | Cliente da API Eduzz com ferramentas auto-geradas |
 
 ## Arquitetura
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      Claude Code                             │
+│                     Cliente MCP                             │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
-│  │ eduzz-config │  │eduzz-knowledge│  │  eduzz-api   │       │
-│  │              │  │              │  │              │       │
-│  │ • Perfis     │  │ • Busca      │  │ • Chamadas   │       │
-│  │ • Credenciais│  │ • Exemplos   │  │ • Endpoints  │       │
-│  │ • Ambientes  │  │ • Docs       │  │ • Status     │       │
-│  └──────┬───────┘  └──────────────┘  └──────┬───────┘       │
-│         │                                    │               │
-│         └────────────────┬───────────────────┘               │
-│                          │                                   │
-│                   ┌──────▼──────┐                            │
-│                   │  Eduzz API  │                            │
-│                   └─────────────┘                            │
-│                                                              │
+│                                                             │
+│                   ┌──────────────────┐                      │
+│                   │  eduzz-devhub    │                      │
+│                   │  (servidor MCP)  │                      │
+│                   ├──────────────────┤                      │
+│                   │                  │                      │
+│                   │ • Config tools   │                      │
+│                   │ • Knowledge tools│                      │
+│                   │ • API tools      │                      │
+│                   │ • Resources      │                      │
+│                   │                  │                      │
+│                   └────────┬─────────┘                      │
+│                            │                                │
+│                     ┌──────▼──────┐                         │
+│                     │  Eduzz API  │                         │
+│                     └─────────────┘                         │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ## Quick Start
 
 ```bash
-# Instalar todos os servidores de uma vez
+# Instalar o servidor
 npx --yes github:eduardofurihata/labzz-mcp-devhub setup
 
 # Reiniciar o Claude Code e usar as ferramentas:

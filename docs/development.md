@@ -9,25 +9,31 @@ labzz-mcp-devhub/
 ├── .github/
 │   └── workflows/
 │       └── publish-npm.yml    # CI/CD
+├── src/                       # Servidor unificado + CLI
+│   ├── server.ts              # Cria McpServer e registra todas as tools
+│   ├── cli.ts                 # CLI unificado
+│   └── index.ts               # Re-exports
+├── dist/                      # Build do src/ (commitado para npx compat)
 ├── docs/                      # Documentação
 ├── packages/
-│   ├── mcp-api/              # Cliente da API
+│   ├── mcp-api/               # Cliente da API
 │   │   ├── src/
 │   │   ├── tests/
 │   │   └── package.json
-│   ├── mcp-config/           # Gerenciamento de perfis
+│   ├── mcp-config/            # Gerenciamento de perfis
 │   │   ├── src/
 │   │   ├── tests/
 │   │   └── package.json
-│   └── mcp-knowledge/        # Base de conhecimento
+│   └── mcp-knowledge/         # Base de conhecimento
 │       ├── src/
-│       ├── data/             # Dados pré-processados
+│       ├── data/              # Dados pré-processados
 │       ├── tests/
 │       └── package.json
-├── cli.js                    # CLI principal
-├── package.json              # Configuração do monorepo
-├── tsconfig.json             # Configuração TypeScript
-└── vitest.config.ts          # Configuração de testes
+├── cli.js                     # Entrypoint (thin wrapper -> dist/cli.js)
+├── package.json               # Configuração do monorepo
+├── tsconfig.json              # Configuração TypeScript base (packages estendem)
+├── tsconfig.build.json        # Configuração TypeScript para src/ do root
+└── vitest.config.ts           # Configuração de testes
 ```
 
 ## Setup Local
@@ -40,33 +46,66 @@ cd labzz-mcp-devhub
 # Instalar dependências
 npm install
 
-# Build de todos os pacotes
+# Build de todos os pacotes + servidor unificado
 npm run build
 
 # Rodar testes
-npm test
+npx vitest run
 ```
 
 ## Comandos Disponíveis
 
 | Comando | Descrição |
 |---------|-----------|
-| `npm run build` | Build de todos os pacotes |
-| `npm test` | Executa todos os testes |
+| `npm run build` | Build de todos os pacotes + servidor unificado |
+| `npm run build:root` | Build apenas do servidor unificado (src/) |
+| `npx vitest run` | Executa todos os testes |
 | `npm run lint` | Verifica código TypeScript |
 | `npm run clean` | Remove arquivos de build |
 | `npm run sync` | Sincroniza base de conhecimento |
 
+## Arquitetura
+
+### Padrão de Registro de Tools
+
+Cada pacote exporta uma função `registerXTools(server, deps)` que registra suas ferramentas em qualquer instância de `McpServer`:
+
+```typescript
+// packages/mcp-config/src/server.ts
+export function registerConfigTools(server: McpServer, configManager: ConfigManager): void {
+  server.tool('eduzz_profile_list', ...);
+  server.tool('eduzz_profile_create', ...);
+  // ...
+}
+```
+
+O servidor unificado (`src/server.ts`) cria UM `McpServer` e chama os 3 registradores:
+
+```typescript
+// src/server.ts
+export function createServer(): McpServer {
+  const server = new McpServer({ name: 'eduzz-devhub', version: '2.0.0' });
+  registerConfigTools(server, configManager);
+  registerKnowledgeTools(server, knowledgeConfig);
+  registerAPITools(server, { configManager });
+  return server;
+}
+```
+
+### Backward Compatibility
+
+Cada pacote mantém `createXServer()` e `startServer()` para uso standalone. Estes são wrappers que criam seu próprio `McpServer` e chamam a função de registro.
+
 ## Desenvolvimento de um Pacote
 
-Cada pacote em `packages/` é independente e segue a mesma estrutura:
+Cada pacote em `packages/` segue a mesma estrutura:
 
 ```
 packages/mcp-{nome}/
 ├── src/
 │   ├── index.ts      # Exports públicos
-│   ├── server.ts     # Servidor MCP
-│   ├── cli.ts        # CLI do pacote
+│   ├── server.ts     # registerXTools() + createXServer() + startServer()
+│   ├── cli.ts        # CLI standalone do pacote
 │   └── types.ts      # Tipos TypeScript
 ├── tests/
 │   └── *.test.ts     # Testes com Vitest
@@ -75,79 +114,11 @@ packages/mcp-{nome}/
 └── README.md
 ```
 
-### Criando um Novo Servidor MCP
+### Adicionando Novas Tools
 
-1. **Crie a estrutura:**
-```bash
-mkdir -p packages/mcp-novo/src
-mkdir -p packages/mcp-novo/tests
-```
-
-2. **Adicione o package.json:**
-```json
-{
-  "name": "@eduzz/mcp-novo",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "./dist/index.js",
-  "bin": {
-    "eduzz-novo": "./dist/cli.js"
-  },
-  "scripts": {
-    "build": "tsc",
-    "test": "vitest run"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0"
-  }
-}
-```
-
-3. **Implemente o servidor:**
-```typescript
-// src/server.ts
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-
-const server = new Server({
-  name: 'eduzz-novo',
-  version: '1.0.0',
-}, {
-  capabilities: {
-    tools: {},
-  },
-});
-
-// Registrar ferramentas
-server.setRequestHandler(ListToolsRequestSchema, async () => ({
-  tools: [
-    {
-      name: 'minha_ferramenta',
-      description: 'Descrição da ferramenta',
-      inputSchema: {
-        type: 'object',
-        properties: {
-          param: { type: 'string' }
-        }
-      }
-    }
-  ]
-}));
-
-export async function startServer() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-}
-```
-
-4. **Adicione ao CLI principal:**
-```javascript
-// cli.js - adicione ao SERVERS
-const SERVERS = {
-  // ...existentes
-  'eduzz-novo': join(__dirname, 'packages/mcp-novo/dist/cli.js'),
-};
-```
+1. Implemente a função `registerXTools()` no `server.ts` do pacote
+2. Exporte via `index.ts`
+3. Importe e chame no `src/server.ts` do root
 
 ## Testes
 
@@ -173,11 +144,8 @@ describe('ConfigManager', () => {
 Executar testes:
 
 ```bash
-# Todos os testes
-npm test
-
-# Testes de um pacote específico
-npm test -w @eduzz/mcp-config
+# Todos os testes (do root)
+npx vitest run
 
 # Watch mode
 npx vitest
@@ -187,20 +155,22 @@ npx vitest
 
 O projeto usa GitHub Actions para CI/CD:
 
-- **Trigger:** Push em `main` com mudanças em `packages/`, `package.json`, ou `cli.js`
+- **Trigger:** Push em `main` com mudanças em `packages/`, `src/`, `package.json`, `cli.js` ou `tsconfig.build.json`
 - **Steps:**
   1. Checkout
   2. Setup Node.js 20
   3. Install dependencies
-  4. Build
+  4. Build (workspaces + root)
   5. Run tests
   6. Publish (se versão mudou)
 
 ### Publicando Nova Versão
 
 1. Atualize a versão no `package.json` raiz
-2. Commit e push para `main`
-3. O workflow publica automaticamente se a versão mudou
+2. Rebuild: `npm run build`
+3. Commit o `dist/` atualizado junto com as mudanças
+4. Push para `main`
+5. O workflow publica automaticamente se a versão mudou
 
 ## Convenções
 
@@ -224,7 +194,17 @@ chore: atualiza dependências
 
 ## Debugging
 
-Para debugar um servidor MCP localmente:
+Para debugar o servidor unificado localmente:
+
+```bash
+# Build tudo
+npm run build
+
+# Executar o servidor unificado
+node dist/cli.js serve
+```
+
+Para debugar um pacote standalone:
 
 ```bash
 # Build o pacote

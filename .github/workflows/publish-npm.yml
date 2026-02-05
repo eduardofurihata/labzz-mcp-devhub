@@ -5,8 +5,10 @@ on:
     branches: [main]
     paths:
       - 'packages/**'
+      - 'src/**'
       - 'package.json'
       - 'cli.js'
+      - 'tsconfig.build.json'
   workflow_dispatch:
 
 jobs:
@@ -29,11 +31,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build packages in order
-        run: |
-          npm run build -w @eduzz/mcp-config
-          npm run build -w @eduzz/mcp-knowledge
-          npm run build -w @eduzz/mcp-api
+      - name: Build all packages and unified server
+        run: npm run build
 
       - name: Run tests
         run: npx vitest run --passWithNoTests

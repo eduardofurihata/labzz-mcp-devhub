@@ -1,8 +1,8 @@
 # API Reference
 
-Referência completa de todas as ferramentas disponíveis nos servidores MCP.
+Referência completa de todas as ferramentas disponíveis no servidor `eduzz-devhub`.
 
-## eduzz-config
+## Configuração
 
 Gerenciamento de credenciais e perfis.
 
@@ -93,9 +93,9 @@ Remove um perfil.
 
 ---
 
-## eduzz-knowledge
+## Base de Conhecimento
 
-Base de conhecimento com busca semântica.
+Busca semântica na documentação Eduzz.
 
 ### eduzz_search
 
@@ -106,26 +106,13 @@ Busca semântica na documentação da Eduzz.
 | Nome | Tipo | Obrigatório | Descrição |
 |------|------|-------------|-----------|
 | `query` | string | Sim | Termo de busca |
-| `limit` | number | Não | Máximo de resultados (default: 5) |
-| `type` | string | Não | Filtrar por tipo: `page`, `example`, `endpoint` |
+| `limit` | number | Não | Máximo de resultados (default: 10) |
+| `type` | string | Não | Filtrar por tipo: `doc`, `example`, `api` |
+| `language` | string | Não | Filtrar exemplos por linguagem |
 
 **Exemplo:**
 ```
 eduzz_search(query: "como criar um produto", limit: 3)
-```
-
-**Retorno:**
-```json
-{
-  "results": [
-    {
-      "title": "Criando Produtos",
-      "content": "...",
-      "type": "page",
-      "score": 0.95
-    }
-  ]
-}
 ```
 
 ---
@@ -140,6 +127,7 @@ Obtém exemplos de código por tópico.
 |------|------|-------------|-----------|
 | `topic` | string | Sim | Tópico do exemplo |
 | `language` | string | Não | Linguagem: `javascript`, `python`, `curl` |
+| `limit` | number | Não | Máximo de exemplos (default: 5) |
 
 **Exemplo:**
 ```
@@ -157,7 +145,7 @@ Documentação detalhada de um endpoint da API.
 | Nome | Tipo | Obrigatório | Descrição |
 |------|------|-------------|-----------|
 | `path` | string | Sim | Path do endpoint (ex: `/products`) |
-| `method` | string | Não | Método HTTP (default: `GET`) |
+| `method` | string | Não | Método HTTP: `GET`, `POST`, `PUT`, `PATCH`, `DELETE` |
 
 **Exemplo:**
 ```
@@ -168,11 +156,11 @@ eduzz_get_endpoint(path: "/products", method: "POST")
 
 ### eduzz_sync
 
-Sincroniza a base de conhecimento (atualiza dados).
+Sincroniza a base de conhecimento (deleta e reconstrói do zero).
 
 **Parâmetros:** Nenhum
 
-> **Nota:** Normalmente não é necessário executar manualmente.
+> **Aviso:** Deleta todos os dados existentes antes de reconstruir.
 
 ---
 
@@ -182,19 +170,9 @@ Estatísticas da base de conhecimento.
 
 **Parâmetros:** Nenhum
 
-**Retorno:**
-```json
-{
-  "pages": 150,
-  "examples": 45,
-  "endpoints": 87,
-  "lastSync": "2024-01-01T00:00:00.000Z"
-}
-```
-
 ---
 
-## eduzz-api
+## API
 
 Cliente da API Eduzz.
 
@@ -206,17 +184,18 @@ Faz uma chamada à API da Eduzz.
 
 | Nome | Tipo | Obrigatório | Descrição |
 |------|------|-------------|-----------|
-| `endpoint` | string | Sim | Path do endpoint |
-| `method` | string | Não | Método HTTP (default: `GET`) |
-| `body` | object | Não | Corpo da requisição |
-| `params` | object | Não | Query parameters |
+| `method` | string | Sim | Método HTTP: `GET`, `POST`, `PUT`, `PATCH`, `DELETE` |
+| `path` | string | Sim | Path do endpoint |
+| `query` | object | Não | Query parameters |
+| `body` | any | Não | Corpo da requisição |
+| `profile` | string | Não | Perfil a usar (default: perfil ativo) |
 
 **Exemplo:**
 ```
 eduzz_api_call(
-  endpoint: "/products",
   method: "GET",
-  params: { page: 1, limit: 10 }
+  path: "/products",
+  query: { page: "1", limit: "10" }
 )
 ```
 
@@ -230,11 +209,11 @@ Lista todos os endpoints disponíveis.
 
 | Nome | Tipo | Obrigatório | Descrição |
 |------|------|-------------|-----------|
-| `tag` | string | Não | Filtrar por tag/categoria |
+| `filter` | string | Não | Filtrar por path ou método |
 
 **Exemplo:**
 ```
-eduzz_api_endpoints(tag: "products")
+eduzz_api_endpoints(filter: "products")
 ```
 
 ---
@@ -245,19 +224,6 @@ Verifica o status da API e da autenticação.
 
 **Parâmetros:** Nenhum
 
-**Retorno:**
-```json
-{
-  "api": "online",
-  "authenticated": true,
-  "profile": "sandbox",
-  "rateLimit": {
-    "remaining": 100,
-    "reset": "2024-01-01T00:05:00.000Z"
-  }
-}
-```
-
 ---
 
 ### eduzz_api_reload
@@ -267,3 +233,15 @@ Recarrega as ferramentas geradas dinamicamente do OpenAPI.
 **Parâmetros:** Nenhum
 
 > **Nota:** Use após atualizações na especificação OpenAPI.
+
+---
+
+## Resources
+
+### eduzz://docs/overview
+
+Visão geral da documentação disponível.
+
+### eduzz://openapi/spec.json
+
+Especificação OpenAPI completa da API Eduzz.
